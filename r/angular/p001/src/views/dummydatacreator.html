@@ -31,8 +31,7 @@
                      <label for="DOBOfEmployee">Date of birth</label>
                      <input name="DOBOfEmployee" type="text" class="form-control" placeholder="DOB">
                 </div>
-                <div class="checkbox">    
-                    <label>Sex</label>
+				<div class="checkbox">                    
                      <label for="sexOfEmployee">
                         <input type="radio" name="sexOfEmployee"/> Male
                      </label>
@@ -76,7 +75,7 @@
                     
                         <div class="col-md-3">
                             <div class="checkbox">
-                                 <label for="sexOfEmployee">
+                                 <label for="sexOfEmployee" title="HTML">
                                     <input type="checkbox" name="HTML"/> HTML
                                 </label>
                             </div>
@@ -153,9 +152,56 @@
                             <textarea name="briefDescription" class="form-control" placeholder="Detail Description"></textarea>                   
                         </div>
                         <div class="form-group">
-                            <label for="roleInTheProject">My role in the Project</label> 
-                            <input name="roleInTheProject" type="text" class="form-control" placeholder="Role in the project">                   
-                        </div>    
+                            <label for="roleInTheProject">My role in the Project (in Detail)</label> 
+                            <textarea name="roleInTheProject" class="form-control" placeholder="Role in the project"></textarea>                   
+                        </div>
+						<div class="form-group">
+                            <label for="briefDescription">Project Duration</label> 
+                            <div class="container-fluid">
+								<div class="col-md-1">
+								<label for="briefDescription">Start</label> 
+								</div>
+								<div class="col-md-5">
+									<input name="startDate" type="text" class="form-control" placeholder="Start Date">  
+								</div>
+								<div class="col-md-1">
+								<label for="briefDescription">End</label> 
+								</div>
+								<div class="col-md-5">
+									<input name="endDate" type="text" class="form-control" placeholder="End Date">  
+								</div>
+							</div>
+							                   
+                        </div>
+						<div class="form-group">
+							<label for="achievement">Technologies used</label> 
+							<input name="achievement" type="text" class="form-control" placeholder="Put technologies in comma separated way">  
+						</div>
+						<div class="form-group">
+							<label for="achievement">Major achievement</label> 
+							<input name="achievement" type="text" class="form-control" placeholder="Achievement">  
+						</div>
+						<div class="form-group">
+							<label for="achievement">Challenge you faced</label> 
+							<input name="challenge" type="text" class="form-control" placeholder="Challenge">  
+						</div>
+						<div class="form-group">
+							<label for="achievement">Demo url (if any)</label> 
+							<input name="demoUrl" type="text" class="form-control" placeholder="Demo URL">  
+						</div>
+						<div class="form-group">
+							<label for="achievement">Live url (if any)</label> 
+							<input name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
+						</div>
+						<div class="form-group">
+							<label for="achievement">Award/Appreciation (if any)</label> 
+							<input name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
+						</div>
+						<div class="form-group">
+							<label for="achievement">Anything special you want to add</label> 
+							<input name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
+						</div>
+						
                     </div>
             </form>
 			<hr/>
