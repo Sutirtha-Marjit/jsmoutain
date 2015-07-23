@@ -1,0 +1,15 @@
+.bgBlack{
+background:black;
+}
+
+.bgBlack *{
+color:white;
+}
+
+.main-nav-container{
+padding-top:25px;
+}
+
+.borderBottom{
+border:1px solid #ccc;
+}

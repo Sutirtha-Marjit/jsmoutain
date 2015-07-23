@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Application name</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<link href="c/bs/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link href="c/bs/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet"/>
+<link href="c/custom.app.css" type="text/css" rel="stylesheet"/>
+<body>
+   
+    <div class="container-fluid bgBlack pt10">
+      <h3>Insert data to create dummy JSON</h3>
+    </div>
+<div class="container-fluid">    
+    
+   <div class="row">
+        <div class="col-md-6">
+            <h4 class="text-success">Personal data</h4>
+            <hr/>
+            <form name="dummyDataForm">
+                <div class="form-group">
+                     <label for="nameOfEmployee">Name of employee</label>
+                     <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                     <label for="nameOfEmployee">Surname of employee</label>
+                     <input name="surnameOfEmployee" type="text" class="form-control" placeholder="Surname">
+                </div>
+                <div class="checkbox">    
+                    <label>Sex</label>
+                     <label for="sexOfEmployee">
+                        <input type="radio" name="sexOfEmployee"/> Male
+                     </label>
+                     <label for="sexOfEmployee">
+                        <input type="radio" name="sexOfEmployee"/> Female
+                     </label>
+                     <label for="sexOfEmployee">
+                        <input type="radio" name="sexOfEmployee"/> Not to mention
+                     </label>
+                </div>
+               <div class="form-group">
+                    <label for="bloodGroupOfEmployee">Blood Group</label>
+                    <select class="form-control">
+                        <option value="A+">A+</option>
+                        <option value="B+">B+</option>
+                        <option value="O+">O+</option>
+                        <option value="AB+">AB+</option>
+                        <option value="A-">A-</option>
+                        <option value="B-">B-</option>
+                        <option value="O-">O-</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+               </div>
+               <hr/>
+               <div class="form-group">
+                   <label for="addressOfEmployee">Address</label> 
+                   <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address">                   
+               </div>
+               <div class="form-group">
+                   <input name="pinOfEmployee" type="text" class="form-control" placeholder="pin">
+               </div>
+               <div class="form-group">
+                   <input name="state" type="text" class="form-control" placeholder="state">
+               </div>
+               <div class="form-group">
+                   <select name="country" class="form-control" placeholder="country"></select>
+               </div>
+               <hr/>
+               <h4 class="text-success">Skill and efficiency</h4>
+               <div class="container-fluid">
+                    
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="HTML"/> HTML
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="Javascript"/> Javascript
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="Angular JS"/> Angular JS
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="Sencha"/> Sencha
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="HTML"/> HTML
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="Javascript"/> Javascript
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="Angular JS"/> Angular JS
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                 <label for="sexOfEmployee">
+                                    <input type="checkbox" name="Sencha"/> Sencha
+                                </label>
+                            </div>
+                        </div>
+                      
+                   
+               </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+           <h4 class="text-success">JSON</h4> 
+           <hr/> 
+          <form name="dummyJSONPool">
+             <div class="form-group">
+                   <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled></textarea>
+               </div>
+           </form>
+        </div>
+   </div>
+</div>
+</body>
+</html>
