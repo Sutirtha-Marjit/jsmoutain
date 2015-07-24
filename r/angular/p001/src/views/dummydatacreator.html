@@ -70,9 +70,18 @@
                    <select name="country" class="form-control" placeholder="country"></select>
                </div>
                <hr/>
+               <h4 class="text-success">Identity details</h4>
+               <div class="form-group">
+                   <label for="passport">Passport</label>
+                   <input name="passportNumber" type="text" class="form-control" placeholder="Passport no">
+               </div>
+               <div class="form-group">
+                   <label for="passport">Passport validity</label>
+                   <input name="passportValidity" type="text" class="form-control" placeholder="Passport validity">
+               </div>
+               <hr/>
                <h4 class="text-success">Skill and efficiency</h4>
-               <div class="container-fluid">
-                    
+               <div class="container-fluid">                    
                         <div class="col-md-3">
                             <div class="checkbox">
                                  <label for="sexOfEmployee" title="HTML">
@@ -147,6 +156,10 @@
                             <label for="briefDescription">Brief Description</label> 
                             <input name="briefDescription" type="text" class="form-control" placeholder="Brief Description">                   
                         </div>
+                        <div class="form-group">
+                            <label for="client">Client/Business body</label> 
+                            <input name="client" type="text" class="form-control" placeholder="Client">                   
+                        </div>                        
 						<div class="form-group">
                             <label for="briefDescription">Detail Description</label> 
                             <textarea name="briefDescription" class="form-control" placeholder="Detail Description"></textarea>                   
@@ -221,5 +234,6 @@
         </div>
    </div>
 </div>
+<script src="c/bs/bootstrap.min.js"></script>
 </body>
 </html>
