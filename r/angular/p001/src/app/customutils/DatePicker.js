@@ -45,7 +45,7 @@ function DatePicker(){
     };
 	
 	self.makeCalendar = function(month,year){		
-		var i,totalTDs=0,firstPos,containerDiv,fullMonth = self.generateMonth(month,year),dateSeris=1;
+		var i,totalTDs=0,firstPos,containerDiv,tempDate=null,tempTitle='',fullMonth = self.generateMonth(month,year),dateSeris=0;
 		containerDiv = self.getContainerDiv();        
 		$('body').append(containerDiv);
 		firstPos = fullMonth[0].getDay();
@@ -56,12 +56,18 @@ function DatePicker(){
         totalTDs = containerDiv.find('td[data-index]').length;
         containerDiv.find('*[data-id="crPhase"]').text(self.months[month]+","+year);
         while(i<35){
-            
-          containerDiv.find('td[data-index="'+i+'"]').html('<a class="btn btn-default btn-sm btn-block" title="'+fullMonth[dateSeris-1]+'">'+dateSeris+'</a>');
+          tempDate = fullMonth[dateSeris];
+		  
+		  if(tempDate.getMonth()== month){
+          tempTitle = tempDate.getDate()+"-"+self.months[tempDate.getMonth()]+"-"+year;
+		  containerDiv.find('td[data-index="'+i+'"]').html('<a data-toggle="tooltip" data-placement="top" class="btn btn-default btn-sm btn-block" title="'+tempTitle+'">'+tempDate.getDate()+'</a>');
+		  }
           dateSeris++;
           i++;          
         } 
-		
+		if(typeof $('*').tooltip != 'undefined'){
+		$('[data-toggle="tooltip"]').tooltip();
+		}
     };	
     
     self.getHeaderDiv = function(){
@@ -84,7 +90,7 @@ function DatePicker(){
 		}
 		
 		tbodyHTML += '</tr>\n</tbody>';
-	    return self.getHeaderDiv()+'<table class="table">'+theadHTML+tbodyHTML+'</table>';
+	    return self.getHeaderDiv()+'<table class="table table-striped">'+theadHTML+tbodyHTML+'</table>';
 	}
 
 }
