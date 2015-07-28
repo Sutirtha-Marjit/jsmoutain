@@ -3,7 +3,8 @@ function DatePicker(){
 	var currentMonth,self = this;
 	self.today = new Date();
 	self.containerID = '#calendar-container-div';
-	self.days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    self.months = ['Jan','Feb','Mar','Apr','May','June','Jul','Aug','Sept','Oct','Nov','Dec'];
+	self.days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 	
 	currentMonth = self.today.getMonth();
 	
@@ -23,25 +24,50 @@ function DatePicker(){
 		return fullMonth;
 	};
 	
-	self.createContainerDiv = function(){
+	self.getContainerDiv = function(){
 		var div = $(self.containerID);
 		
 		if(div.length==0){
 			div = $('<div id="'+self.containerID.split('#')[1]+'"/>');
+            div.html(self.generateEmptyCalHTML());
 		}
 		
 		return div;
 	}
+    
+    self.generateASpecificDate = function(date,month,year){
+        var newDate = new Date();
+        newDate.setDate(date);
+        newDate.setMonth(month);
+        newDate.setYear(year);
+        
+        return newDate;
+    };
 	
 	self.makeCalendar = function(month,year){		
-		var firstPos,containerDiv,fullMonth = self.generateMonth(month,year);
-		containerDiv = self.createContainerDiv();
-        containerDiv.html(self.generateEmptyCalHTML());
+		var i,totalTDs=0,firstPos,containerDiv,fullMonth = self.generateMonth(month,year),dateSeris=1;
+		containerDiv = self.getContainerDiv();        
 		$('body').append(containerDiv);
 		firstPos = fullMonth[0].getDay();
+        console.log(self.generateASpecificDate(1,month,year));
 		console.log(containerDiv.find('td[data-index="'+firstPos+'"]'));
+        i=firstPos;
+        containerDiv.find('td[data-index]').text('');
+        totalTDs = containerDiv.find('td[data-index]').length;
+        containerDiv.find('*[data-id="crPhase"]').text(self.months[month]+","+year);
+        while(i<35){
+            
+          containerDiv.find('td[data-index="'+i+'"]').html('<a class="btn btn-default btn-sm btn-block" title="'+fullMonth[dateSeris-1]+'">'+dateSeris+'</a>');
+          dateSeris++;
+          i++;          
+        } 
 		
     };	
+    
+    self.getHeaderDiv = function(){
+               
+        return '<div><div class="btn-group" style="display:block; width:135px; margin:0 auto;"><a class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-left"></span></a><a data-id="crPhase" class="btn btn-sm btn-default">Jul 2014</a><a class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-right"></span></a></div></div>';
+    };
 	
 	self.generateEmptyCalHTML = function(){		
 	   var i,m,theadHTML = '<thead><tr>',tbodyHTML='<tbody>\n<tr>\n'; 	   
@@ -52,13 +78,13 @@ function DatePicker(){
 		
 		for(m=1;m<=35;m++){
 			var endOf7days = (m%7==0);			
-			tbodyHTML += '<td data-index="'+m+'">'+m+'</td>\n';
+			tbodyHTML += '<td data-index="'+(m-1)+'">'+(m-1)+'</td>\n';
 			if(endOf7days){tbodyHTML +='</tr>\n';}	
 			if(endOf7days){tbodyHTML +='<tr>\n';} 	
 		}
 		
 		tbodyHTML += '</tr>\n</tbody>';
-	    return '<table class="table">'+theadHTML+tbodyHTML+'</table>';
+	    return self.getHeaderDiv()+'<table class="table">'+theadHTML+tbodyHTML+'</table>';
 	}
 
 }
