@@ -11,15 +11,27 @@
 <body>
    
     <div class="container-fluid bgBlack pt10">
-      <h3>Insert data to create dummy JSON</h3>
+      <h3>Register Employee</h3>
     </div>
 <div class="container-fluid">    
     
    <div class="row">
         <div class="col-md-6">
-            <h4 class="text-success">Personal data</h4>
-            <hr/>
-            <form name="dummyDataForm">
+           <div class="tabbedAnchors appPT"> 
+            <div class="btn-group">
+                <a class="btn btn-sm btn-primary">Personal Data</a>
+                <a class="btn btn-sm btn-primary">Identity details</a>
+                <a class="btn btn-sm btn-primary">Skill and efficiency</a>
+                <a class="btn btn-sm btn-primary">Projects</a>
+                <a class="btn btn-sm btn-primary">Misc</a>
+            </div>
+          </div>
+          
+            
+            <form name="employeeRegistration">
+            
+                <h4 class="text-success">Personal data</h4>
+                <hr/>
                 <div class="form-group">
                      <label for="nameOfEmployee">Name</label>
                      <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name">
@@ -71,6 +83,9 @@
                    <select name="country" class="form-control" placeholder="country"></select>
                </div>
                <hr/>
+               <!-- TAB CONTENT : END -->
+               
+               <!-- @Identity details:TAB CONTENT : START -->
                <h4 class="text-success">Identity details</h4>
                <div class="form-group">
                    <label for="passport">Passport</label>
@@ -80,7 +95,9 @@
                    <label for="passport">Passport validity</label>
                    <input name="passportValidity" type="text" class="form-control" placeholder="Passport validity">
                </div>
-               <hr/>
+               <!-- @Identity details:TAB CONTENT : END -->
+               
+               <!-- @Skill and efficiency:TAB CONTENT : START -->
                <h4 class="text-success">Skill and efficiency</h4>
                <div class="container-fluid">                    
                         <div class="col-md-3">
@@ -146,7 +163,9 @@
                        </div>
                    
                </div>
-               <hr/>
+               <!-- @Skill and efficiency:TAB CONTENT : END -->
+               
+               <!-- @Projects:TAB CONTENT : START -->
                <h4 class="text-success">Projects</h4>
                     <div class="projectSet">
                         <div class="form-group">
@@ -217,6 +236,7 @@
 						</div>
 						
                     </div>
+                <!-- @Projects:TAB CONTENT : END -->    
             </form>
 			<hr/>
 			<a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Register">Register Employee</a>
@@ -235,6 +255,7 @@
         </div>
    </div>
 </div>
+<script src="../app/lib/angular/angular.js"></script>
 <script src="../app/lib/jquery/jquery.min.js"></script>
 <script src="c/bs/js/bootstrap.min.js"></script>
 <script src="../app/customutils/DatePicker.js"></script>

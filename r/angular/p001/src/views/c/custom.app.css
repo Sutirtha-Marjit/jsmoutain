@@ -13,3 +13,19 @@ padding-top:25px;
 .borderBottom{
 border:1px solid #ccc;
 }
+
+.appPT{
+padding-top:10px;
+}
+
+.appPB{
+padding-bottom:10px;
+}
+
+.appPL{
+padding-left:10px;
+}
+
+.appPR{
+padding-right:10px;
+}
