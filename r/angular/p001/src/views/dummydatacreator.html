@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app='empDataMantSystem'>
 <head>
 <title>Application name</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,15 @@
 <link href="c/bs/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet"/>
 <link href="c/custom.app.css" type="text/css" rel="stylesheet"/>
 <link href="c/datepicker.css" type="text/css" rel="stylesheet"/>
+<link href="c/tabbedpanel.css" type="text/css" rel="stylesheet"/>
+<script src="../app/urls.js"></script>
+<script src="../app/lib/angular/angular.js"></script>
+<script src="../app/app.js"></script>
+<script src="../app/controllers/registration.ctrl.js"></script>
+<script src="../app/lib/jquery/jquery.min.js"></script>
+<script src="c/bs/js/bootstrap.min.js"></script>
+<script src="../app/customutils/DatePicker.js"></script>
+<script src="../app/customutils/TabbedPanel.js"></script>
 <body>
    
     <div class="container-fluid bgBlack pt10">
@@ -15,25 +24,22 @@
     </div>
 <div class="container-fluid">    
     
-   <div class="row">
+   <div class="row" ng-controller="registrationCtrl">
         <div class="col-md-6">
            <div class="tabbedAnchors appPT"> 
-            <div class="btn-group">
-                <a class="btn btn-sm btn-primary">Personal Data</a>
-                <a class="btn btn-sm btn-primary">Identity details</a>
-                <a class="btn btn-sm btn-primary">Skill and efficiency</a>
-                <a class="btn btn-sm btn-primary">Projects</a>
-                <a class="btn btn-sm btn-primary">Misc</a>
-            </div>
+            <ul class="nav nav-tabs">
+				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#">{{i}}</a></li>                
+            </ul>
           </div>
+          <h4 data-prop="tabContentHead-registration" class="text-success">Personal data</h4>
           
-            
             <form name="employeeRegistration">
-            
-                <h4 class="text-success">Personal data</h4>
-                <hr/>
+				
+				<div data-prop="tabContent-registration">
+				<!-- @Personal Data:TAB CONTENT : START -->
+				
                 <div class="form-group">
-                     <label for="nameOfEmployee">Name</label>
+                     <label for="nameOfEmployee"></label>
                      <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name">
                 </div>
                 <div class="form-group">
@@ -58,14 +64,7 @@
                <div class="form-group">
                     <label for="bloodGroupOfEmployee">Blood Group</label>
                     <select class="form-control">
-                        <option value="A+">A+</option>
-                        <option value="B+">B+</option>
-                        <option value="O+">O+</option>
-                        <option value="AB+">AB+</option>
-                        <option value="A-">A-</option>
-                        <option value="B-">B-</option>
-                        <option value="O-">O-</option>
-                        <option value="AB-">AB-</option>
+						<option ng-repeat="bl in formOptions.medical.bloodGroups"  value="{{bl}}">{{bl}}</option>                        
                     </select>
                </div>
                <hr/>
@@ -74,7 +73,7 @@
                    <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address">                   
                </div>
                <div class="form-group">
-                   <input name="pinOfEmployee" type="text" class="form-control" placeholder="pin">
+                   <input name="pinOfEmployee" type="number" class="form-control" placeholder="pin">
                </div>
                <div class="form-group">
                    <input name="state" type="text" class="form-control" placeholder="state">
@@ -82,11 +81,18 @@
                <div class="form-group">
                    <select name="country" class="form-control" placeholder="country"></select>
                </div>
-               <hr/>
-               <!-- TAB CONTENT : END -->
-               
+               <!-- @Personal Data:TAB CONTENT : END -->
+               </div>
+			   
+			   <div data-prop="tabContent-registration">
+				<!-- @Photograph:TAB CONTENT : START -->
+					<input type="file" accept="image/*;capture=camera">
+				<!-- @Photograph:TAB CONTENT : END -->
+			   </div>
+			   
+			   <div data-prop="tabContent-registration">
                <!-- @Identity details:TAB CONTENT : START -->
-               <h4 class="text-success">Identity details</h4>
+               
                <div class="form-group">
                    <label for="passport">Passport</label>
                    <input name="passportNumber" type="text" class="form-control" placeholder="Passport no">
@@ -96,66 +102,31 @@
                    <input name="passportValidity" type="text" class="form-control" placeholder="Passport validity">
                </div>
                <!-- @Identity details:TAB CONTENT : END -->
-               
+			   </div>
+			   
+               <div data-prop="tabContent-registration">
                <!-- @Skill and efficiency:TAB CONTENT : START -->
-               <h4 class="text-success">Skill and efficiency</h4>
-               <div class="container-fluid">                    
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee" title="HTML">
-                                    <input type="checkbox" name="HTML"/> HTML
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee">
-                                    <input type="checkbox" name="Javascript"/> Javascript
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee">
-                                    <input type="checkbox" name="Angular JS"/> Angular JS
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee">
-                                    <input type="checkbox" name="Sencha"/> Sencha
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee">
-                                    <input type="checkbox" name="HTML"/> HTML
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee">
-                                    <input type="checkbox" name="Javascript"/> Javascript
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee">
-                                    <input type="checkbox" name="Angular JS"/> Angular JS
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="checkbox">
-                                 <label for="sexOfEmployee">
-                                    <input type="checkbox" name="Sencha"/> Sencha
-                                </label>
-                            </div>
-                        </div>
+               
+			   <!-- A -->
+			   <div class="panel-group" role="tablist" aria-multiselectable="true" ng-repeat="n in formOptions.technical.skillsets">
+				  <div class="panel panel-success">
+						<div class="panel-heading" role="tab">
+							<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">{{n[0]}}</a></h4>
+						</div>
+						<div id="collapse{{$index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+							<div class="panel-body">
+								<div class="col-md-4" ng-repeat="skill in n[1]">
+									<div class="checkbox"><label for="{{skill}}" title="HTML"><input type="checkbox" name="{{skill}}"/> {{skill}}</label></div>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</div>
+			   <!-- A -->
+			   
+			   <hr/>
+               <div class="container-fluid">		
+                        
                        <div class="col-md-12">
                             <div class="form-group">
                                  <input name="additionalSkill" type="text" class="form-control" placeholder="Additional skills which are not listed">
@@ -164,9 +135,12 @@
                    
                </div>
                <!-- @Skill and efficiency:TAB CONTENT : END -->
+			   </div>
                
+			   
+			   <div data-prop="tabContent-registration">
                <!-- @Projects:TAB CONTENT : START -->
-               <h4 class="text-success">Projects</h4>
+					
                     <div class="projectSet">
                         <div class="form-group">
                             <label for="projectName">Project Name / Heading</label> 
@@ -236,32 +210,30 @@
 						</div>
 						
                     </div>
-                <!-- @Projects:TAB CONTENT : END -->    
+                <!-- @Projects:TAB CONTENT : END -->  
+				</div>
+				
             </form>
 			<hr/>
-			<a class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="top" title="Register">Register Employee</a>
-			<hr/>
-			<a class="btn btn-success btn-block">Publish JSON</a>
-			<h4>Note</h4>
+			
         </div>
         <div class="col-md-6">
            <h4 class="text-success">JSON</h4> 
            <hr/> 
           <form name="dummyJSONPool">
              <div class="form-group">
-                   <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled></textarea>
+                   <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled>{{2*8}}</textarea>
                </div>
            </form>
         </div>
    </div>
 </div>
-<script src="../app/lib/angular/angular.js"></script>
-<script src="../app/lib/jquery/jquery.min.js"></script>
-<script src="c/bs/js/bootstrap.min.js"></script>
-<script src="../app/customutils/DatePicker.js"></script>
+
 <script id="datePickerTest">
     var d = new DatePicker();
     d.makeCalendar(6,2009);
+	
+	var t = new TabbedPanel();
 </script>
 </body>
 </html>

@@ -1,0 +1,3 @@
+*[data-prop^='tabContent']{
+display:none;
+}
