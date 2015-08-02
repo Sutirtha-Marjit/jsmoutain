@@ -1,4 +1,4 @@
-const SOURCES={
+var SOURCES={
 registrationFormData : "",
-countries: ""
+countries: "properties/countries.json"
 }

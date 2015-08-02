@@ -1,8 +1,17 @@
 var registrationCtrl = function($scope,$http) {
 	console.log(window);
     $scope.moduleHeading = "Employee registration";
+	$scope.dataToCapture = {
+		name:null,
+		surname:null,
+		dob:null,
+		sex:null,
+		bloodGroup:null,
+		
+	};
+	console.log(SOURCES.countries);
+	
     $scope.segmentNames = ["Personal Data", "Photograph", "Identity details", "Skill and efficiency", "Projects", "Misc"];
-
     $scope.formOptions = {
         medical: {
             bloodGroups: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', 'Others'],

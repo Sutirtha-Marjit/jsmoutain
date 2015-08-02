@@ -25,13 +25,25 @@
 <div class="container-fluid">    
     
    <div class="row" ng-controller="registrationCtrl">
-        <div class="col-md-6">
+        <div class="col-md-8">
            <div class="tabbedAnchors appPT"> 
             <ul class="nav nav-tabs">
-				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#">{{i}}</a></li>                
+				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-user"></span> {{i}}</a></li>                
             </ul>
           </div>
-          <h4 data-prop="tabContentHead-registration" class="text-success">Personal data</h4>
+		  <div class="container-fluid">
+			<div class="row">
+				<div class="col-md-8"><h4 data-prop="tabContentHead-registration" class="text-success">Personal data</h4></div>
+				<div class="col-md-4 appPT">
+					<div class="btn-group">
+						<a class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
+						<a class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Update</a>
+						<a class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Reset all</a>
+					</div>	
+				</div>
+			</div>
+		  </div>
+         
           
             <form name="employeeRegistration">
 				
@@ -40,46 +52,49 @@
 				
                 <div class="form-group">
                      <label for="nameOfEmployee"></label>
-                     <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name">
+                     <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name" ng-model="dataToCapture.name">
                 </div>
                 <div class="form-group">
                      <label for="nameOfEmployee">Surname</label>
-                     <input name="surnameOfEmployee" type="text" class="form-control" placeholder="Surname">
+                     <input name="surnameOfEmployee" type="text" class="form-control" placeholder="Surname" ng-model="dataToCapture.surname">
                 </div>
                 <div class="form-group">
                      <label for="DOBOfEmployee">Date of birth</label>
-                     <input name="DOBOfEmployee" type="text" class="form-control" placeholder="DOB" data-prop="date">
+                     <input name="DOBOfEmployee" type="text" class="form-control" placeholder="DOB" data-prop="date" ng-model="dataToCapture.dob">
                 </div>
 				<div class="checkbox">                    
                      <label for="sexOfEmployee">
-                        <input type="radio" name="sexOfEmployee"/> Male
+                        <input type="radio" name="sexOfEmployee" value="Male" ng-model="dataToCapture.sex" /> Male
                      </label>
                      <label for="sexOfEmployee">
-                        <input type="radio" name="sexOfEmployee"/> Female
+                        <input type="radio" name="sexOfEmployee" value="Female" ng-model="dataToCapture.sex"/> Female
                      </label>
                      <label for="sexOfEmployee">
-                        <input type="radio" name="sexOfEmployee"/> Not to mention
+                        <input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex"/> Not to mention
                      </label>
                 </div>
                <div class="form-group">
                     <label for="bloodGroupOfEmployee">Blood Group</label>
-                    <select class="form-control">
-						<option ng-repeat="bl in formOptions.medical.bloodGroups"  value="{{bl}}">{{bl}}</option>                        
+                    <select class="form-control" ng-model="dataToCapture.bloodGroup">
+						<option ng-repeat="bl in formOptions.medical.bloodGroups" value="{{bl}}">{{bl}}</option>                        
                     </select>
                </div>
                <hr/>
                <div class="form-group">
                    <label for="addressOfEmployee">Address</label> 
-                   <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address">                   
+                   <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address">                   
                </div>
                <div class="form-group">
-                   <input name="pinOfEmployee" type="number" class="form-control" placeholder="pin">
+                   <input name="pinOfEmployee" type="number" class="form-control" placeholder="pin" ng-model="dataToCapture.pin">
                </div>
                <div class="form-group">
-                   <input name="state" type="text" class="form-control" placeholder="state">
+                   <input name="state" type="text" class="form-control" placeholder="state" ng-model="dataToCapture.state">
                </div>
                <div class="form-group">
-                   <select name="country" class="form-control" placeholder="country"></select>
+                   <select name="country" class="form-control" placeholder="country" ng-model="dataToCapture.country">
+						<option value="India">India</option>
+						<option value="India">India</option>
+				   </select>
                </div>
                <!-- @Personal Data:TAB CONTENT : END -->
                </div>
@@ -217,12 +232,12 @@
 			<hr/>
 			
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
            <h4 class="text-success">JSON</h4> 
            <hr/> 
           <form name="dummyJSONPool">
              <div class="form-group">
-                   <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled>{{2*8}}</textarea>
+                   <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled>{{dataToCapture}}</textarea>
                </div>
            </form>
         </div>
