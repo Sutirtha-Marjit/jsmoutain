@@ -26,6 +26,7 @@
 <div class="container-fluid">    
     
    <div class="row" ng-controller="registrationCtrl">
+   
         <div class="col-md-10">
            <div class="tabbedAnchors appPT"> 
             <ul class="nav nav-tabs">
@@ -52,16 +53,22 @@
 				<!-- @Personal Data:TAB CONTENT : START -->
 				
                 <div class="form-group">
-                     <label for="nameOfEmployee"></label>
-                     <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name" ng-model="dataToCapture.name">
+                     <label for="nameOfEmployee">Name</label>
+                     <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.nameOfEmployee.$error.required"></span>
+                     <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.nameOfEmployee.$error.required"></span>
+                     <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name" ng-model="dataToCapture.name"  ng-required="true"/>                     
                 </div>
                 <div class="form-group">
-                     <label for="nameOfEmployee">Surname</label>
-                     <input name="surnameOfEmployee" type="text" class="form-control" placeholder="Surname" ng-model="dataToCapture.surname">
+                     <label for="surnameOfEmployee">Surname</label>
+                     <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.surnameOfEmployee.$error.required"></span>
+                     <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.surnameOfEmployee.$error.required"></span>
+                     <input name="surnameOfEmployee" type="text" class="form-control" placeholder="Surname" ng-model="dataToCapture.surname" ng-required="true"/>
                 </div>
                 <div class="form-group">
                      <label for="DOBOfEmployee">Date of birth</label>
-                     <input name="DOBOfEmployee" type="text" class="form-control" placeholder="DOB" data-prop="date" ng-model="dataToCapture.dob">
+                     <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.DOBOfEmployee.$error.required"></span>
+                     <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.DOBOfEmployee.$error.required"></span>
+                     <input name="DOBOfEmployee" type="text" class="form-control" placeholder="DOB" data-prop="date" ng-model="dataToCapture.dob" ng-required="true"/>
                 </div>
 				<div class="checkbox">                    
                      <label for="sexOfEmployee">
@@ -76,19 +83,21 @@
                 </div>
                <div class="form-group">
                     <label for="bloodGroupOfEmployee">Blood Group</label>
-                    <select class="form-control" ng-model="dataToCapture.bloodGroup">
+                    <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.bGroupOfEmployee.$error.required"></span>
+                    <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.bGroupOfEmployee.$error.required"></span>
+                    <select name="bGroupOfEmployee" class="form-control" ng-model="dataToCapture.bloodGroup" ng-required="true">
 						<option ng-repeat="bl in formOptions.medical.bloodGroups" value="{{bl}}">{{bl}}</option>                        
                     </select>
-               </div>
-               <hr/>
-               
+               </div>              
                <!-- @Personal Data:TAB CONTENT : END -->
                </div>
 			   
                <div data-prop="tabContent-registration">
 				<!-- @Contact Data:TAB CONTENT : START -->
                     <div class="form-group">
-                        <label for="addressOfEmployee">Address</label> 
+                        <label for="addressOfEmployee">Address</label>
+                        <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.addressOfEmployee.$error.required"></span>
+                        <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.addressOfEmployee.$error.required"></span>    
                         <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address">                   
                     </div>
                <div class="form-group">
