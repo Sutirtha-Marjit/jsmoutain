@@ -29,3 +29,7 @@ padding-left:10px;
 .appPR{
 padding-right:10px;
 }
+
+.boxCommon{
+border:2px solid #ccc;
+}

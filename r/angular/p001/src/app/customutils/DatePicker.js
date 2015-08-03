@@ -1,5 +1,4 @@
 function DatePicker() {
-    console.log('DatePicker');
     var currentMonth, setValue, self = this;
     self.today = new Date();
     self.containerID = '#calendar-container-div';
@@ -13,7 +12,6 @@ function DatePicker() {
     currentMonth = self.today.getMonth();
 
     setValue = function(val) {
-        console.log(val);
         if (self.currentInputField !== null) {
             var d = new Date(val)
             self.currentInputField.val(d.getMonth() + "-" + d.getDate() + "-" + d.getFullYear());

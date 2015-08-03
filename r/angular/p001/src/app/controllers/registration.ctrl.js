@@ -1,17 +1,37 @@
-var registrationCtrl = function($scope,$http) {
-	console.log(window);
-    $scope.moduleHeading = "Employee registration";
-	$scope.dataToCapture = {
-		name:null,
-		surname:null,
-		dob:null,
-		sex:null,
-		bloodGroup:null,
-		
-	};
-	console.log(SOURCES.countries);
-	
-    $scope.segmentNames = ["Personal Data", "Photograph", "Identity details", "Skill and efficiency", "Projects", "Misc"];
+var registrationCtrl = function($scope, $http) {
+    
+    var tabReady = false;
+    $scope.moduleHeading = "Employee registration";    
+    $scope.dataToCapture = {
+        name: null,
+        surname: null,
+        dob: null,
+        sex: null,
+        bloodGroup: null
+    };    
+
+    $scope.segmentNames = [{
+        name: "Personal Data",
+        icon: "user"
+    }, {
+        name: "Contact details",
+        icon: "earphone"
+    },{
+        name: "Photograph",
+        icon: "camera"
+    }, {
+        name: "Identity details",
+        icon: "th-list"
+    }, {
+        name: "Skill and efficiency",
+        icon: "knight"
+    }, {
+        name: "Projects",
+        icon: "folder-open"
+    }, {
+        name: "Misc",
+        icon: "file"
+    }];
     $scope.formOptions = {
         medical: {
             bloodGroups: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', 'Others'],
@@ -28,7 +48,17 @@ var registrationCtrl = function($scope,$http) {
             ]
         }
     };
+    
+    $scope.implementTabPanel = function(){
+        console.log(Math.random()+" - DONE");
+        //if(!tabReady){
+        var t = new TabbedPanel();
+        tabReady = true;
+       //}
+    }
+    
+    
 
 };
 //empDataMantSystem.controller('registrationCtrl', ['$scope', registrationCtrl]);
-empDataMantSystem.controller('registrationCtrl',registrationCtrl);
+empDataMantSystem.controller('registrationCtrl', registrationCtrl);

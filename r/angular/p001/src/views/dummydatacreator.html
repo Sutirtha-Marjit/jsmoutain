@@ -17,6 +17,7 @@
 <script src="c/bs/js/bootstrap.min.js"></script>
 <script src="../app/customutils/DatePicker.js"></script>
 <script src="../app/customutils/TabbedPanel.js"></script>
+<script src="../app/customutils/Selfie.js"></script>
 <body>
    
     <div class="container-fluid bgBlack pt10">
@@ -25,10 +26,10 @@
 <div class="container-fluid">    
     
    <div class="row" ng-controller="registrationCtrl">
-        <div class="col-md-8">
+        <div class="col-md-10">
            <div class="tabbedAnchors appPT"> 
             <ul class="nav nav-tabs">
-				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-user"></span> {{i}}</a></li>                
+				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a></li>                
             </ul>
           </div>
 		  <div class="container-fluid">
@@ -36,9 +37,9 @@
 				<div class="col-md-8"><h4 data-prop="tabContentHead-registration" class="text-success">Personal data</h4></div>
 				<div class="col-md-4 appPT">
 					<div class="btn-group">
-						<a class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
-						<a class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Update</a>
-						<a class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Reset all</a>
+						<a class="btn btn-sm btn-default"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
+						<a class="btn btn-sm btn-success"><span class="glyphicon glyphicon-saved"></span> Update</a>
+						<a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Reset all</a>
 					</div>	
 				</div>
 			</div>
@@ -80,10 +81,16 @@
                     </select>
                </div>
                <hr/>
-               <div class="form-group">
-                   <label for="addressOfEmployee">Address</label> 
-                   <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address">                   
+               
+               <!-- @Personal Data:TAB CONTENT : END -->
                </div>
+			   
+               <div data-prop="tabContent-registration">
+				<!-- @Contact Data:TAB CONTENT : START -->
+                    <div class="form-group">
+                        <label for="addressOfEmployee">Address</label> 
+                        <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address">                   
+                    </div>
                <div class="form-group">
                    <input name="pinOfEmployee" type="number" class="form-control" placeholder="pin" ng-model="dataToCapture.pin">
                </div>
@@ -96,12 +103,23 @@
 						<option value="India">India</option>
 				   </select>
                </div>
-               <!-- @Personal Data:TAB CONTENT : END -->
+               <div class="form-group">
+                        <label for="phoneOfEmployee">Phone</label> 
+                        <input name="phoneOfEmployee" type="number" class="form-control" placeholder="Address" ng-model="dataToCapture.phone">                   
+                    </div>
+                <!-- @Contact Data:TAB CONTENT : START -->
                </div>
-			   
+               
 			   <div data-prop="tabContent-registration">
 				<!-- @Photograph:TAB CONTENT : START -->
-					<input type="file" accept="image/*;capture=camera">
+					<div class="container-fluid appPT" data-action="selfie">
+                        <div class="col-md-6">
+                            <video class="boxCommon" autoplay="true" src="" width="320" height="320"/>
+                        </div>
+                         <div class="col-md-6">
+                            <canvas class="boxCommon" width="320" height="320"></canvas>
+                        </div>
+                    </div>
 				<!-- @Photograph:TAB CONTENT : END -->
 			   </div>
 			   
@@ -232,7 +250,7 @@
 			<hr/>
 			
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
            <h4 class="text-success">JSON</h4> 
            <hr/> 
           <form name="dummyJSONPool">
@@ -246,9 +264,9 @@
 
 <script id="datePickerTest">
     var d = new DatePicker();
-    d.makeCalendar(6,2009);
-	
+    d.makeCalendar(6,2009);	
 	var t = new TabbedPanel();
+    Selfie({width:340,height:340});
 </script>
 </body>
 </html>
