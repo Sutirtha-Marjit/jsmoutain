@@ -27,7 +27,7 @@
     
    <div class="row" ng-controller="registrationCtrl">
    
-        <div class="col-md-10">
+        <div class="col-md-12">
            <div class="tabbedAnchors appPT"> 
             <ul class="nav nav-tabs">
 				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a></li>                
@@ -98,23 +98,36 @@
                         <label for="addressOfEmployee">Address</label>
                         <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.addressOfEmployee.$error.required"></span>
                         <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.addressOfEmployee.$error.required"></span>    
-                        <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address">                   
+                        <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address"  ng-required="true"/>                   
                     </div>
                <div class="form-group">
-                   <input name="pinOfEmployee" type="number" class="form-control" placeholder="pin" ng-model="dataToCapture.pin">
+                   <label for="addressOfEmployee">Pin/Zip</label> 
+                   <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.pinOfEmployee.$error.required"></span>
+                   <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.pinOfEmployee.$error.required"></span>   
+                   <input name="pinOfEmployee" type="number" class="form-control" placeholder="pin" ng-model="dataToCapture.pin" ng-required="true">
+                   
                </div>
                <div class="form-group">
-                   <input name="state" type="text" class="form-control" placeholder="state" ng-model="dataToCapture.state">
-               </div>
-               <div class="form-group">
-                   <select name="country" class="form-control" placeholder="country" ng-model="dataToCapture.country">
+                   <label for="countryOfEmployee">Country</label> 
+                   <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.countryOfEmployee.$error.required"></span>
+                   <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.countryOfEmployee.$error.required"></span>   
+                   <select name="countryOfEmployee" class="form-control" placeholder="country" ng-model="dataToCapture.country"  ng-required="true">
 						<option value="India">India</option>
 						<option value="India">India</option>
 				   </select>
                </div>
                <div class="form-group">
+                   <label for="stateOfEmployee">State</label> 
+                   <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.stateOfEmployee.$error.required"></span>
+                   <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.stateOfEmployee.$error.required"></span>   
+                   <input name="stateOfEmployee" type="text" class="form-control" placeholder="state" ng-model="dataToCapture.state" ng-required="true"/>
+               </div>
+               
+               <div class="form-group">
                         <label for="phoneOfEmployee">Phone</label> 
-                        <input name="phoneOfEmployee" type="number" class="form-control" placeholder="Address" ng-model="dataToCapture.phone">                   
+                        <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.phoneOfEmployee.$error.required"></span>
+                        <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.phoneOfEmployee.$error.required"></span>
+                        <input name="phoneOfEmployee" type="number" class="form-control" placeholder="Address" ng-model="dataToCapture.phone" ng-required="true"/>                   
                     </div>
                 <!-- @Contact Data:TAB CONTENT : START -->
                </div>
@@ -136,8 +149,10 @@
                <!-- @Identity details:TAB CONTENT : START -->
                
                <div class="form-group">
-                   <label for="passport">Passport</label>
-                   <input name="passportNumber" type="text" class="form-control" placeholder="Passport no">
+                   <label for="passportNumber">Passport</label>
+                   <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.passportNumber.$error.required"></span>
+                   <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.passportNumber.$error.required"></span>
+                   <input name="passportNumber" type="text" class="form-control" placeholder="Passport no" ng-required="true"/>
                </div>
                <div class="form-group">
                    <label for="passport">Passport validity</label>
@@ -258,8 +273,9 @@
             </form>
 			<hr/>
 			
+			
         </div>
-        <div class="col-md-2">
+        <div class="col-md-12">
            <h4 class="text-success">JSON</h4> 
            <hr/> 
           <form name="dummyJSONPool">

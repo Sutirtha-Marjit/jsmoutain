@@ -49,12 +49,20 @@ var registrationCtrl = function($scope, $http) {
         }
     };
     
+    $scope.updateDateInScope = function(){
+      console.log('updateDateInScope');  
+    };
+    
     $scope.implementTabPanel = function(){
         console.log(Math.random()+" - DONE");
         //if(!tabReady){
         var t = new TabbedPanel();
         tabReady = true;
        //}
+    }
+    
+    $scope.loadFormData = function(){
+        $http.get()
     }
     
     

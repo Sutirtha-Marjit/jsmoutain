@@ -1,4 +1,4 @@
-function DatePicker() {
+function DatePicker(config) {
     var currentMonth, setValue, self = this;
     self.today = new Date();
     self.containerID = '#calendar-container-div';
@@ -71,21 +71,27 @@ function DatePicker() {
         var div = self.getContainerDiv();
         $(document).on('focusin', '*[data-prop="date"]', function(e) {
             var topVal, input = $(e.currentTarget),
-                div = self.getContainerDiv();
+            div = self.getContainerDiv();
             self.currentInputField = input;
             topVal = input.height() + Number(input.offset().top) + parseInt(input.css('paddingBottom') + parseInt(input.css('marginBottom')));
             div.css('top', topVal);
             div.css('left', input.offset().left);
-            div.show();
+            div.fadeIn();
         });
-
-        $(document).on('focusout', '*[data-prop="date"]', function(e) {
+        
+        
+        $(document).on('click', 'html,body', function(e) {
+            e.stopPropagation();
+            //console.log('Special clicked - '+Math.random());
+            //console.log($(e.target).data('prop')=='date');
+            console.log($(e.target).parents().find(self.containerID).length>0);
+            /*
             var input = $(e.currentTarget);
             setTimeout(function() {
                 self.currentInputField = null;
-                self.getContainerDiv().hide();
+                self.getContainerDiv().fadeOut();
             }, self.delays[0]);
-
+            */
 
         });
 
