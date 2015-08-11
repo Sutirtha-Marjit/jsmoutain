@@ -62,7 +62,10 @@ var registrationCtrl = function($scope, $http) {
     }
     
     $scope.loadFormData = function(){
-        $http.get()
+        
+       $http.get(SOURCES.countries).then(function(response){
+            //console.log(response);
+        })
     }
     
     
