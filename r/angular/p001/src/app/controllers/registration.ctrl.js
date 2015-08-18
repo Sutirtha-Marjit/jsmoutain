@@ -46,7 +46,9 @@ var registrationCtrl = function($scope, $http) {
                 ['Big Data', []],
                 ['Business Analytics', []]
             ]
-        }
+        },
+		
+		address: {}
     };
     
     $scope.updateDateInScope = function(){
@@ -62,14 +64,16 @@ var registrationCtrl = function($scope, $http) {
     }
     
     $scope.loadFormData = function(){
-        
+       
        $http.get(SOURCES.countries).then(function(response){
-            //console.log(response);
+		  
+          $scope.formOptions.address.countries = response.data;
         })
-    }
+		
+    };
     
-    
-
+	$scope.loadFormData();
+	
 };
 //empDataMantSystem.controller('registrationCtrl', ['$scope', registrationCtrl]);
 empDataMantSystem.controller('registrationCtrl', registrationCtrl);

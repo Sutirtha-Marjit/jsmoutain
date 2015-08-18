@@ -8,6 +8,7 @@ function DatePicker(config) {
     self.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     self.days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     self.currentInputField = null;
+	self.currentCalObject = {};
 
     currentMonth = self.today.getMonth();
 
@@ -36,6 +37,9 @@ function DatePicker(config) {
             crDate.setDate(i);
             fullMonth.push(crDate);
         }
+		
+		self.currentCalObject = {month:month,year:year,date:1};
+		
         return fullMonth;
     };
 
@@ -79,12 +83,50 @@ function DatePicker(config) {
             div.fadeIn();
         });
         
+		$(document).on('mouseover', 'a[data-valuestring]', function(e){
+			$(this).addClass('btn-info');
+		});
+		
+		$(document).on('mouseout', 'a[data-valuestring]', function(e){
+			$(this).removeClass('btn-info');
+		});
+		
+		$(document).on('click', 'a[data-id="mRArrow"],a[data-id="mLArrow"]', function(e){
+			
+			var targetMonth,targetYear;
+			
+			switch($(e.currentTarget).data('id')){
+				
+				case "mRArrow":
+					if(self.currentCalObject.month===11){
+						targetMonth = 0;
+						targetYear = self.currentCalObject.year+1;
+					}else{
+						targetMonth = self.currentCalObject.month+1;
+						targetYear = self.currentCalObject.year;
+					}
+					
+				break;
+				
+				case "mLArrow":
+					if(self.currentCalObject.month===0){
+						targetMonth = 11;
+						targetYear = self.currentCalObject.year-1;
+					}else{
+						targetMonth = self.currentCalObject.month-1;
+						targetYear = self.currentCalObject.year;
+					}
+				break;
+			}
+			self.makeCalendar(targetMonth,targetYear);
+			
+		});
         
         $(document).on('click', 'html,body', function(e) {
             e.stopPropagation();
             //console.log('Special clicked - '+Math.random());
             //console.log($(e.target).data('prop')=='date');
-            console.log($(e.target).parents().find(self.containerID).length>0);
+            
             /*
             var input = $(e.currentTarget);
             setTimeout(function() {
@@ -138,7 +180,20 @@ function DatePicker(config) {
     };
 
     self.getHeaderDiv = function() {
-        return '<div><div class="btn-group" style="display:block; width:260px; margin:0 auto;"><a class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-chevron-left"></span></a><a class="btn btn-sm btn-default">2014</a><a class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-chevron-right"></span></a><a class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-left"></span></a><a data-id="crPhase" class="btn btn-sm btn-default">Jul 2014</a><a class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-right"></span></a></div></div>';
+	     
+		var hHTML = '';
+        hHTML +=  '<div>';
+		hHTML += '<div class="btn-group" style="display:block; width:260px; margin:0 auto;">';
+		hHTML += '<a data-id="yLArrow" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-chevron-left"></span></a>';
+		hHTML += '<a class="btn btn-sm btn-default">2014</a>';
+		hHTML += '<a data-id="yRArrow" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-chevron-right"></span></a>';
+		hHTML += '<a data-id="mLArrow" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-left"></span></a>';
+		hHTML += '<a data-id="crPhase" class="btn btn-sm btn-default">Jul 2014</a>';
+		hHTML += '<a data-id="mRArrow" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-right"></span></a>';
+		hHTML += '</div>';
+		hHTML += '</div>';		
+		
+		return hHTML;
     };
 
     self.generateEmptyCalHTML = function() {
