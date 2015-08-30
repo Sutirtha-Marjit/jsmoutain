@@ -11,12 +11,12 @@ function Selfie(config){
              self.video.src = window.webkitURL.createObjectURL(stream);
          };
          
-          self.errorHandler = function(){
-             console.log('Error');
+          self.errorHandler = function(e){
+             console.error('Error');
          };
          
          if (navigator.getUserMedia) {
-            console.log('ok');    
+            
             navigator.getUserMedia({video: true}, self.videoHandler, self.errorHandler);
         }
         

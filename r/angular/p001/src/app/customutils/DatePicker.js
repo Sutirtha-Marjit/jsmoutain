@@ -1,6 +1,7 @@
 function DatePicker(config) {
     var currentMonth, setValue, self = this;
     self.today = new Date();
+	self.animIntervalID=null;
     self.containerID = '#calendar-container-div';
     self.maxCompartments = 42;
     self.weekLength = 7;
@@ -29,12 +30,12 @@ function DatePicker(config) {
         if (typeof year == 'undefined') {
             year = new Date().getFullYear();
         }
-
-        for (var i = 1; i <= 32; i++) {
+		
+        for (var i = 1; i <= 31; i++) {
             crDate = new Date();
-            crDate.setFullYear(year);
-            crDate.setMonth(month);
             crDate.setDate(i);
+			crDate.setFullYear(year);
+            crDate.setMonth(month);            
             fullMonth.push(crDate);
         }
 		
@@ -91,6 +92,9 @@ function DatePicker(config) {
 			$(this).removeClass('btn-info');
 		});
 		
+		
+		
+		
 		$(document).on('click', 'a[data-id="mRArrow"],a[data-id="mLArrow"]', function(e){
 			
 			var targetMonth,targetYear;
@@ -118,22 +122,35 @@ function DatePicker(config) {
 					}
 				break;
 			}
+			
 			self.makeCalendar(targetMonth,targetYear);
 			
 		});
         
-        $(document).on('click', 'html,body', function(e) {
+        $(document).on('click', '*', function(e) {
             e.stopPropagation();
-            //console.log('Special clicked - '+Math.random());
-            //console.log($(e.target).data('prop')=='date');
-            
-            /*
-            var input = $(e.currentTarget);
-            setTimeout(function() {
-                self.currentInputField = null;
-                self.getContainerDiv().fadeOut();
-            }, self.delays[0]);
-            */
+			var parents,i=0,searchFound=false,id,length;
+			id = $(e.currentTarget).attr('id');
+			if(id!=='calendar-container-div'){
+				parents = $(e.currentTarget).parents();
+				length  = parents.length;
+				
+				while(i<length && !searchFound){
+					if(parents.eq(i).attr('id') === 'calendar-container-div'){
+					  searchFound = true;
+					}
+					i++;
+				}
+			
+			}else{
+				searchFound = true;
+			}
+			
+			if(!searchFound){
+				if($(e.currentTarget).data('prop')!=='date'){
+				self.getContainerDiv().fadeOut();		
+					}
+			}
 
         });
 
@@ -154,6 +171,7 @@ function DatePicker(config) {
             year = defaultDate.year;
         }
         fullMonth = self.generateMonth(month, year);
+		
         containerDiv = self.getContainerDiv();
         $('body').append(containerDiv);
         firstPos = fullMonth[0].getDay();
