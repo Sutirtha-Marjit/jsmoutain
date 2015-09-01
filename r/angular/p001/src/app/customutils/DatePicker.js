@@ -1,5 +1,5 @@
 function DatePicker(config) {
-    var currentMonth, setValue, self = this;
+    var currentMonth, appliedListeners=false, setValue, self = this;
     self.today = new Date();
 	self.animIntervalID=null;
     self.containerID = '#calendar-container-div';
@@ -34,11 +34,15 @@ function DatePicker(config) {
         for (var i = 1; i <= 31; i++) {
             crDate = new Date();
             crDate.setDate(i);
-			crDate.setFullYear(year);
-            crDate.setMonth(month);            
+		   crDate.setFullYear(year);
+            crDate.setMonth(month);
+            if(i===crDate.getDate()){    
             fullMonth.push(crDate);
+            }else{
+                console.log(i);
+                console.log(crDate.getDate());
+            }
         }
-		
 		self.currentCalObject = {month:month,year:year,date:1};
 		
         return fullMonth;
@@ -95,13 +99,15 @@ function DatePicker(config) {
 		
 		
 		
-		$(document).on('click', 'a[data-id="mRArrow"],a[data-id="mLArrow"]', function(e){
-			
+		//$(document).on('click', 'a[data-id="mRArrow"],a[data-id="mLArrow"]', function(e){
+         self.mArrowClickHandler = function(e){
+			console.log('mArrowCLICKED');
 			var targetMonth,targetYear;
 			
 			switch($(e.currentTarget).data('id')){
 				
 				case "mRArrow":
+                       console.log("mRArrow clicked");
 					if(self.currentCalObject.month===11){
 						targetMonth = 0;
 						targetYear = self.currentCalObject.year+1;
@@ -113,6 +119,7 @@ function DatePicker(config) {
 				break;
 				
 				case "mLArrow":
+                       console.log("mLArrow clicked");
 					if(self.currentCalObject.month===0){
 						targetMonth = 11;
 						targetYear = self.currentCalObject.year-1;
@@ -125,7 +132,7 @@ function DatePicker(config) {
 			
 			self.makeCalendar(targetMonth,targetYear);
 			
-		});
+		};
         
         $(document).on('click', '*', function(e) {
             e.stopPropagation();
@@ -161,10 +168,7 @@ function DatePicker(config) {
     };
 
     self.makeCalendar = function(month, year) {
-        var i, totalTDs = 0,
-            firstPos, containerDiv, tempDate = null,
-            tempTitle = '',
-            fullMonth, dateSeris = 0;
+        var i, totalTDs = 0,firstPos, containerDiv, tempDate = null,tempTitle = '',fullMonth, dateSeris = 0;
         if (month == null || year == null) {
             var defaultDate = self.getDefaultDate();
             month = defaultDate.month;

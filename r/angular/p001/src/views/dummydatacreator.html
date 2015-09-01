@@ -47,8 +47,7 @@
 		  </div>
          
           
-            <form name="employeeRegistration">
-				
+            <form name="employeeRegistration">				
 				<div data-prop="tabContent-registration">
 				<!-- @Personal Data:TAB CONTENT : START -->
 				
@@ -68,7 +67,7 @@
                      <label for="DOBOfEmployee">Date of birth</label>
                      <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.DOBOfEmployee.$error.required"></span>
                      <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.DOBOfEmployee.$error.required"></span>
-                     <input name="DOBOfEmployee" type="text" class="form-control" placeholder="DOB" data-prop="date" ng-model="dataToCapture.dob" ng-required="true"/>
+                     <input maxlength="10" name="DOBOfEmployee" type="text" class="form-control" placeholder="{{dateFormatString}}" data-prop="date" ng-model="dataToCapture.dob" ng-required="true"/>
                 </div>
 				<div class="checkbox">                    
                      <label for="sexOfEmployee">
@@ -78,7 +77,7 @@
                         <input type="radio" name="sexOfEmployee" value="Female" ng-model="dataToCapture.sex"/> Female
                      </label>
                      <label for="sexOfEmployee">
-                        <input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex"/> Not to mention
+                        <input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex" /> Not to mention
                      </label>
                 </div>
                <div class="form-group">
@@ -104,7 +103,7 @@
                    <label for="addressOfEmployee">Pin/Zip</label> 
                    <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.pinOfEmployee.$error.required"></span>
                    <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.pinOfEmployee.$error.required"></span>   
-                   <input name="pinOfEmployee" type="number" class="form-control" placeholder="pin" ng-model="dataToCapture.pin" ng-required="true">
+                   <input maxlength="6" name="pinOfEmployee" type="number" class="form-control" placeholder="Pin" ng-model="dataToCapture.pin" ng-required="true">
                    
                </div>
                <div class="form-group">
@@ -130,35 +129,24 @@
                         <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.phoneOfEmployee.$error.required"></span>
                         <input name="phoneOfEmployee" type="number" class="form-control" placeholder="Address" ng-model="dataToCapture.phone" ng-required="true"/>
                     </div>
+                    
+                   
                 <!-- @Contact Data:TAB CONTENT : START -->
                </div>
                
-			   <div data-prop="tabContent-registration">
-				<!-- @Photograph:TAB CONTENT : START -->
-					<div class="container-fluid appPT" data-action="selfie">
-                        <div class="col-md-6">
-                            <video class="boxCommon" autoplay="true" src="" width="320" height="320"/>
-                        </div>
-                         <div class="col-md-6">
-                            <canvas class="boxCommon" width="320" height="320"></canvas>
-                        </div>
-                    </div>
-				<!-- @Photograph:TAB CONTENT : END -->
-			   </div>
+			   
 			   
 			   <div data-prop="tabContent-registration">
                     <!-- @Identity details:TAB CONTENT : START -->               
-                       <div class="form-group">
-                           <label for="passportNumber">Passport</label>
-                           <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.p.$error.required"></span>
-                           <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.p.$error.required"></span>
-                           <input name="p" type="text" class="form-control" placeholder="Passport no" ng-required="true"/>
-                           <span>{{console.log(employeeRegistration)}}</span>
-                       </div>
+                        <div class="form-group">
+                            <label for="passport">Passport</label> 
+                            <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.passport.$error.required"></span>
+                            <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.passport.$error.required"></span>
+                            <input name="passport" type="number" class="form-control" placeholder="Passport" ng-model="dataToCapture.passport" ng-required="true"/>
+                        </div>
                        <div class="form-group">
                            <label for="passport">Passport validity</label>
-                           <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.passportValidity.$error.required"></span>
-                           <input name="passportValidity" type="text" class="form-control" placeholder="Passport validity" ng-required="true"/>                           
+                           <input maxlength="10" name="passportValidity" type="text" class="form-control" placeholder="{{dateFormatString}}" data-prop="date"/>                           
                        </div>
                        
                    <!-- @Identity details:TAB CONTENT : END -->
@@ -196,78 +184,124 @@
 			   
 			   <div data-prop="tabContent-registration">
                <!-- @Projects:TAB CONTENT : START -->
-					
-                    <div class="projectSet">
-                        <div class="form-group">
-                            <label for="projectName">Project Name / Heading</label> 
-                            <input name="projectName" type="text" class="form-control" placeholder="Project Name">                   
+                   
+                    <div class="row">
+                       <div class="col-md-4">
+                        <a class="btn btn-success btn-small">Add new project <span class="glyphicon glyphicon-plus"></span></a>
+                        <hr/>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">
+                               <h4 class="list-group-item-heading">List group item heading</h4>
+                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
+                            </a>
+                            <a href="#" class="list-group-item">
+                               <h4 class="list-group-item-heading">List group item heading</h4>
+                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
+                            </a>
+                            <a href="#" class="list-group-item">
+                               <h4 class="list-group-item-heading">List group item heading</h4>
+                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
+                            </a>
+                            <a href="#" class="list-group-item">
+                               <h4 class="list-group-item-heading">List group item heading</h4>
+                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
+                            </a>
+                            <a href="#" class="list-group-item">
+                               <h4 class="list-group-item-heading">List group item heading</h4>
+                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label for="briefDescription">Brief Description</label> 
-                            <input name="briefDescription" type="text" class="form-control" placeholder="Brief Description">                   
-                        </div>
-                        <div class="form-group">
-                            <label for="client">Client/Business body</label> 
-                            <input name="client" type="text" class="form-control" placeholder="Client">                   
-                        </div>                        
-						<div class="form-group">
-                            <label for="briefDescription">Detail Description</label> 
-                            <textarea name="briefDescription" class="form-control" placeholder="Detail Description"></textarea>                   
-                        </div>
-                        <div class="form-group">
-                            <label for="roleInTheProject">My role in the Project (in Detail)</label> 
-                            <textarea name="roleInTheProject" class="form-control" placeholder="Role in the project"></textarea>                   
-                        </div>
-						<div class="form-group">
-                            <label for="briefDescription">Project Duration</label> 
-                            <div class="container-fluid">
-								<div class="col-md-1">
-								<label for="briefDescription">Start</label> 
-								</div>
-								<div class="col-md-5">
-									<input name="startDate" type="text" class="form-control" placeholder="Start Date" data-prop="date">  
-								</div>
-								<div class="col-md-1">
-								<label for="briefDescription">End</label> 
-								</div>
-								<div class="col-md-5">
-									<input name="endDate" type="text" class="form-control" placeholder="End Date" data-prop="date">  
-								</div>
-							</div>
-							                   
-                        </div>
-						<div class="form-group">
-							<label for="achievement">Technologies used</label> 
-							<input name="achievement" type="text" class="form-control" placeholder="Put technologies in comma separated way">  
-						</div>
-						<div class="form-group">
-							<label for="achievement">Major achievement</label> 
-							<input name="achievement" type="text" class="form-control" placeholder="Achievement">  
-						</div>
-						<div class="form-group">
-							<label for="achievement">Challenge you faced</label> 
-							<input name="challenge" type="text" class="form-control" placeholder="Challenge">  
-						</div>
-						<div class="form-group">
-							<label for="achievement">Demo url (if any)</label> 
-							<input name="demoUrl" type="text" class="form-control" placeholder="Demo URL">  
-						</div>
-						<div class="form-group">
-							<label for="achievement">Live url (if any)</label> 
-							<input name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
-						</div>
-						<div class="form-group">
-							<label for="achievement">Award/Appreciation (if any)</label> 
-							<input name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
-						</div>
-						<div class="form-group">
-							<label for="achievement">Anything special you want to add</label> 
-							<input name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
-						</div>
-						
+                       </div> 
+                       <div class="col-md-8">
+                            <div class="projectSet">
+                                <div class="form-group">
+                                    <label for="projectName">Project Name / Heading</label> 
+                                    <input ng-model="currentProject.projectName" name="projectName" type="text" class="form-control" placeholder="Project Name">                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="briefDescription">Brief Description</label> 
+                                    <input ng-model="currentProject.briefDescription" name="briefDescription" type="text" class="form-control" placeholder="Brief Description">                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="client">Client/Business body</label> 
+                                    <input ng-model="currentProject.client" name="client" type="text" class="form-control" placeholder="Client">                   
+                                </div>                        
+                                <div class="form-group">
+                                    <label for="briefDescription">Detail Description</label> 
+                                    <textarea ng-model="currentProject.detailDescription" name="detailDescription" class="form-control" placeholder="Detail Description"></textarea>                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="roleInTheProject">My role in the Project (in Detail)</label> 
+                                    <textarea ng-model="currentProject.roleInTheProject" name="roleInTheProject" class="form-control" placeholder="Role in the project"></textarea>                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="briefDescription">Project Duration</label> 
+                                    <div class="container-fluid">
+                                        <div class="col-md-1">
+                                        <label for="briefDescription">Start</label> 
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input ng-model="currentProject.startDate" name="startDate" type="text" class="form-control" placeholder="Start Date" data-prop="date">  
+                                        </div>
+                                        <div class="col-md-1">
+                                        <label for="briefDescription">End</label> 
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input ng-model="currentProject.endDate" name="endDate" type="text" class="form-control" placeholder="End Date" data-prop="date">  
+                                        </div>
+                                    </div>
+                                                       
+                                </div>
+                                <div class="form-group">
+                                    <label for="achievement">Technologies used</label> 
+                                    <input ng-model="currentProject.technologies" name="achievement" type="text" class="form-control" placeholder="Put technologies in comma separated way">  
+                                </div>
+                                <div class="form-group">
+                                    <label for="achievement">Major achievement</label> 
+                                    <input ng-model="currentProject.achievement" name="achievement" type="text" class="form-control" placeholder="Achievement">  
+                                </div>
+                                <div class="form-group">
+                                    <label for="achievement">Challenge you faced</label> 
+                                    <input ng-model="currentProject.challenge" name="challenge" type="text" class="form-control" placeholder="Challenge">  
+                                </div>
+                                <div class="form-group">
+                                    <label for="achievement">Demo url (if any)</label> 
+                                    <input ng-model="currentProject.demoUrl" name="demoUrl" type="text" class="form-control" placeholder="Demo URL">  
+                                </div>
+                                <div class="form-group">
+                                    <label for="achievement">Live url (if any)</label> 
+                                    <input ng-model="currentProject.liveUrl" name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
+                                </div>
+                                <div class="form-group">
+                                    <label for="achievement">Award/Appreciation (if any)</label> 
+                                    <input ng-model="currentProject.awardAppreciation" name="awardAppreciation" type="text" class="form-control" placeholder="Live URL">  
+                                </div>
+                                <div class="form-group">
+                                    <label for="achievement">Anything special you want to add</label> 
+                                    <input ng-model="currentProject.specialNote" name="liveUrl" type="text" class="form-control" placeholder="Special you want to add">  
+                                </div>
+                                <div class="form-group">
+                                    <a ng-click="updateProject()" class="btn btn-success">Save</a>
+                                </div>
+                            </div>
+                            
+                       </div>     
                     </div>
                 <!-- @Projects:TAB CONTENT : END -->  
 				</div>
+                
+                <div data-prop="tabContent-registration">
+				<!-- @Photograph:TAB CONTENT : START -->
+					<div class="container-fluid appPT" data-action="selfie">
+                        <div class="col-md-6">
+                            <video class="boxCommon" autoplay="true" src="" width="320" height="320"/>
+                        </div>
+                         <div class="col-md-6">
+                            <canvas class="boxCommon" width="320" height="320"></canvas>
+                        </div>
+                    </div>
+				<!-- @Photograph:TAB CONTENT : END -->
+			   </div>
 				
             </form>
 			<hr/>
@@ -279,7 +313,7 @@
            <hr/> 
           <form name="dummyJSONPool">
              <div class="form-group">
-                   <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled>{{dataToCapture}}</textarea>
+                   <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled>{{dataToCapture}} AND {{currentProject}}</textarea>
                </div>
            </form>
         </div>
@@ -288,10 +322,9 @@
 </div>
 
 <script id="datePickerTest">
-    var d = new DatePicker();
-    d.makeCalendar();	
+    /*var d = new DatePicker(); d.makeCalendar();*/
 	var t = new TabbedPanel();
-    Selfie({width:340,height:340});
+    /*Selfie({width:340,height:340});*/
 </script>
 </body>
 </html>

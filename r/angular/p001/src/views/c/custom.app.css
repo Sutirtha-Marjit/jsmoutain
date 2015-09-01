@@ -18,6 +18,10 @@ border:1px solid #ccc;
 padding-top:10px;
 }
 
+.appPT .btn-group{
+float:right;
+}
+
 .appPB{
 padding-bottom:10px;
 }
@@ -32,4 +36,8 @@ padding-right:10px;
 
 .boxCommon{
 border:2px solid #ccc;
+}
+
+a:link,a.visited,a:hover{
+  outline:none !important;  
 }
