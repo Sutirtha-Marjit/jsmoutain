@@ -86,6 +86,7 @@ var registrationCtrl = function($scope, $http) {
     $scope.updateProject = function(){
         alert('updateProject');
         $scope.dataToCapture.projects.push($scope.currentProject);
+		$scope.currentProject = {};
     };
 
     $scope.loadFormData = function() {
