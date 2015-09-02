@@ -14,6 +14,10 @@ padding-top:25px;
 border:1px solid #ccc;
 }
 
+.noLeftPD{
+  padding-left:0; 
+}
+
 .appPT{
 padding-top:10px;
 }
@@ -37,6 +41,16 @@ padding-right:10px;
 .boxCommon{
 border:2px solid #ccc;
 }
+
+.smallLevelText{
+font-size:12px;    
+}
+
+h4.smallLevelText{
+font-weight:bold;
+font-size:12px;    
+}
+
 
 a:link,a.visited,a:hover{
   outline:none !important;  

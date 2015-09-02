@@ -10,6 +10,7 @@
 <link href="c/datepicker.css" type="text/css" rel="stylesheet"/>
 <link href="c/tabbedpanel.css" type="text/css" rel="stylesheet"/>
 <script src="../app/urls.js"></script>
+<script src="../app/lib/underscore/underscore.js"></script>
 <script src="../app/lib/angular/angular.js"></script>
 <script src="../app/app.js"></script>
 <script src="../app/controllers/registration.ctrl.js"></script>
@@ -33,17 +34,11 @@
 				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a></li>                
             </ul>
           </div>
-		  <div class="container-fluid">
+		  <div class="container-fluid noLeftPD">
 			<div class="row">
-				<div class="col-md-8"><h4 data-prop="tabContentHead-registration" class="text-success">Personal data</h4></div>
-				<div class="col-md-4 appPT">
-					<div class="btn-group">
-						<a class="btn btn-sm btn-default"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
-						<a class="btn btn-sm btn-success"><span class="glyphicon glyphicon-saved"></span> Update</a>
-						<a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Reset all</a>
-					</div>	
-				</div>
+				<div class="col-md-8"><h4 data-prop="tabContentHead-registration" class="text-success">Personal data</h4></div>				
 			</div>
+            <hr/>
 		  </div>
          
           
@@ -187,33 +182,33 @@
                    
                     <div class="row">
                        <div class="col-md-4">
-                        <a class="btn btn-success btn-small">Add new project <span class="glyphicon glyphicon-plus"></span></a>
+                        <a ng-click="claenCurrentProject()" class="btn btn-success btn-small">Add new project <span class="glyphicon glyphicon-plus"></span></a>
                         <hr/>
                         <div class="list-group">
-                            <a href="#" class="list-group-item">
-                               <h4 class="list-group-item-heading">List group item heading</h4>
-                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                               <h4 class="list-group-item-heading">List group item heading</h4>
-                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                               <h4 class="list-group-item-heading">List group item heading</h4>
-                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                               <h4 class="list-group-item-heading">List group item heading</h4>
-                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                               <h4 class="list-group-item-heading">List group item heading</h4>
-                               <p class="list-group-item-text">Donect is dasd  h hsad jad bjad jjdjasdja ujavd ath  uuad.</p>
-                            </a>
+						
+                            <div class="list-group-item" ng-repeat="p in dataToCapture.projects">
+                               <div class="row">
+                                    <div class="col-md-10">
+                                        <h4 class="list-group-item-heading text-info smallLevelText">{{p.projectName}}</h4>
+                                        <p class="list-group-item-text smallLevelText">{{p.briefDescription}}</p>
+                                        <p class="list-group-item-text text-info smallLevelText">{{p.startDate}}&nbsp;&nbsp;&nbsp;{{p.endDate}}</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                          <a ng-click='deleteProject(p.id)' class="btn btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                                          <a ng-click="editProject($index)" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    </div>
+                               </div>
+                               
+							   
+							   <div class="btn-group">
+                                        
+                                   </div>
+                            </div>
+                            
                         </div>
                        </div> 
                        <div class="col-md-8">
-                            <div class="projectSet">
+                            <div data-id="projectSet" class="projectSet hide">
                                 <div class="form-group">
                                     <label for="projectName">Project Name / Heading</label> 
                                     <input ng-model="currentProject.projectName" name="projectName" type="text" class="form-control" placeholder="Project Name">                   
@@ -281,7 +276,7 @@
                                     <input ng-model="currentProject.specialNote" name="liveUrl" type="text" class="form-control" placeholder="Special you want to add">  
                                 </div>
                                 <div class="form-group">
-                                    <a ng-click="updateProject()" class="btn btn-success">Save</a>
+                                    <a ng-click="updateProject()" class="btn btn-success">Save project</a>
                                 </div>
                             </div>
                             

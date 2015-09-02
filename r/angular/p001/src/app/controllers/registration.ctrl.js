@@ -83,10 +83,40 @@ var registrationCtrl = function($scope, $http) {
         }
     };
     
+    $scope.deleteProject = function(idToDelete){       
+        
+        $scope.dataToCapture.projects = _.reject($scope.dataToCapture.projects,function(proj){
+            return (proj.id === idToDelete);
+        }); 
+               
+    }
+    
+    $scope.claenCurrentProject = function(){
+        $('div[data-id="projectSet"]').removeClass('hide');
+        $scope.currentProject={};
+    }
+    
+	$scope.editProject = function(i){	
+		
+		$scope.currentProject = $scope.dataToCapture.projects[i];
+		
+	};
+	
     $scope.updateProject = function(){
-        alert('updateProject');
-        $scope.dataToCapture.projects.push($scope.currentProject);
-		$scope.currentProject = {};
+	
+		$(document).scrollTop(0);
+        if($scope.currentProject.id===undefined || $scope.currentProject.id===null){
+			$scope.currentProject.id = '_id'+(Math.random()+'').split('.')[1];		
+			$scope.dataToCapture.projects.push($scope.currentProject);
+			$scope.currentProject = {};
+		}else{			
+			var proj;
+			proj = _.find($scope.dataToCapture.projects,function(proj){
+                    return proj.id == $scope.currentProject.id;
+			});			
+			proj = $scope.currentProject;
+              $scope.currentProject={};
+		}
     };
 
     $scope.loadFormData = function() {
