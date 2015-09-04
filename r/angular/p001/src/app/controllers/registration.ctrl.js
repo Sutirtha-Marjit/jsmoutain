@@ -133,3 +133,5 @@ var registrationCtrl = function($scope, $http) {
 };
 //empDataMantSystem.controller('registrationCtrl', ['$scope', registrationCtrl]);
 empDataMantSystem.controller('registrationCtrl', registrationCtrl);
+
+/*Registration controller*/
