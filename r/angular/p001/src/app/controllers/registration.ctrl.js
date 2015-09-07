@@ -1,5 +1,4 @@
 var registrationCtrl = function($scope, $http) {
-
     var tabReady = false;
     $scope.moduleHeading = "Employee registration";
     $scope.dateFormatString = "DD-MM-YYYY";
@@ -135,3 +134,4 @@ var registrationCtrl = function($scope, $http) {
 empDataMantSystem.controller('registrationCtrl', registrationCtrl);
 
 /*Registration controller*/
+
