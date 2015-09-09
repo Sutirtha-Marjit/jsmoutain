@@ -15,18 +15,12 @@
 	 <label for="DOBOfEmployee">Date of birth</label>
 	 <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.DOBOfEmployee.$error.required"></span>
 	 <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.DOBOfEmployee.$error.required"></span>
-	 <input maxlength="10" name="DOBOfEmployee" type="text" class="form-control" placeholder="{{dateFormatString}}" data-prop="date" ng-model="dataToCapture.dob" ng-required="true"/>
+	 <input maxlength="10" name="DOBOfEmployee" type="Date" class="form-control" placeholder="{{dateFormatString}}" data-prop="date" ng-model="dataToCapture.dob" ng-required="true" ng-date-required="true"/>
 </div>
 <div class="checkbox">                    
-	 <label for="sexOfEmployee">
-		<input type="radio" name="sexOfEmployee" value="Male" ng-model="dataToCapture.sex" /> Male
-	 </label>
-	 <label for="sexOfEmployee">
-		<input type="radio" name="sexOfEmployee" value="Female" ng-model="dataToCapture.sex"/> Female
-	 </label>
-	 <label for="sexOfEmployee">
-		<input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex" /> Not to mention
-	 </label>
+	 <label for="sexOfEmployee"><input type="radio" name="sexOfEmployee" value="Male" ng-model="dataToCapture.sex" /> Male</label>
+	 <label for="sexOfEmployee"><input type="radio" name="sexOfEmployee" value="Female" ng-model="dataToCapture.sex"/> Female</label>
+	 <label for="sexOfEmployee"><input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex" /> Not to mention</label>
 </div>
 <div class="form-group">
 	<label for="bloodGroupOfEmployee">Blood Group</label>

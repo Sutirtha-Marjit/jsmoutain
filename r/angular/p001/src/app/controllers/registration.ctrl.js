@@ -4,7 +4,7 @@ var registrationCtrl = function($scope, $http) {
     $scope.includeTemplates = {
         personalData: 'i/personaldata.inc.html'
     };
-    $scope.dateFormatString = "DD-MM-YYYY";
+    $scope.dateFormatString = "MM/DD/YYYY";
     $scope.dataToCapture = {
         name: null,
         surname: null,
@@ -60,32 +60,11 @@ var registrationCtrl = function($scope, $http) {
         console.log('updateDateInScope');
 
     };
-
-    $scope.implementTabPanel = function() {
-        console.log(Math.random() + " - DONE");
-        //if(!tabReady){
-        var t = new TabbedPanel();
-        tabReady = true;
-        //}
-    }
-
-    $scope.validation = {
-        dateValid: function(dateString) {
-            if (dateString !== null && dateString !== undefined) {
-                if (dateString.indexOf('-') != -1) {
-                    var dateArr = dateString.split('-');
-                    var dateString = dateArr[1] + '-' + dateArr[0] + '-' + dateArr[2]
-                    var date = new Date();
-                    date.setDate();
-                    console.log(dateString);
-
-                    //console.log(date.toString().indexOf('Invalid Date')==-1);
-                }
-            }
-        }
+    
+    $scope.validationFunction = function(){
+         
     };
-
-
+   
     $scope.deleteProject = function(idToDelete) {
 
         $scope.dataToCapture.projects = _.reject($scope.dataToCapture.projects, function(proj) {
@@ -129,6 +108,28 @@ var registrationCtrl = function($scope, $http) {
             $scope.formOptions.address.countries = response.data;
         })
 
+    };
+    
+    $scope.postData = function(){
+        
+        $http.post('http://169.144.60.69:8081/testNode',$scope.dataToCapture).then(function(){
+            alert('Done');
+            
+        },function(response){            
+            console.log(response);
+        });
+        
+        /*
+        $http({
+               url:'http://169.144.60.69:8081/testNode',
+               method:"POST",
+               headers: {
+                          'Authorization': 'Basic dGVzdDp0ZXN0',
+                          'Content-Type': 'application/x-www-form-urlencoded',
+                          'Access-Control-Allow-Origin':'*'
+               },
+               data: $scope.dataToCapture
+          });*/
     };
 
     $scope.renderTabbedPane = function() {

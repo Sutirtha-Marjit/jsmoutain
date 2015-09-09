@@ -19,6 +19,7 @@
 <!-- JS :start -->
 <script src="../app/urls.js"></script>
 <script src="../app/app.js"></script>
+<script src="../app/directives/ng-date-required.js"></script>
 <script src="../app/controllers/registration.ctrl.js"></script>
 <script src="c/bs/js/bootstrap.min.js"></script>
 <script src="../app/customutils/DatePicker.js"></script>
@@ -51,17 +52,20 @@
 		  </div>
 		    
 			<form name="employeeRegistration">				
-				<div data-prop="tabContent-registration" ng-include src="'i/personaldata.inc.html'"></div>			   
+			   <div data-prop="tabContent-registration" ng-include src="'i/personaldata.inc.html'"></div>			   
                 <div data-prop="tabContent-registration" ng-include src="'i/contactdata.inc.html'"></div>
-				<div data-prop="tabContent-registration" ng-include src="'i/identitydata.inc.html'"></div>			   
+			  <div data-prop="tabContent-registration" ng-include src="'i/identitydata.inc.html'"></div>			   
                 <div data-prop="tabContent-registration" ng-include src="'i/skillandefficiencydata.inc.html'"></div>
-				<div data-prop="tabContent-registration" ng-include src="'i/projectdata.inc.html'"></div>                
-                <div data-prop="tabContent-registration" ng-include src="i/photograph.inc.html"></div>
-			    <div data-prop="tabContent-registration" ng-include src="'i/misc.inc.html'"></div>				
+			  <div data-prop="tabContent-registration" ng-include src="'i/projectdata.inc.html'"></div>                
+                <div data-prop="tabContent-registration" ng-include src="'i/photograph.inc.html'"></div>
+			  <div data-prop="tabContent-registration" ng-include src="'i/misc.inc.html'"></div>				
             </form>
 			
 			<hr/>
 			
+        </div>
+        <div class="col-md-12">
+        <button ng-click="postData()" class="btn btn-primary">Register now!</button>
         </div>
         <div class="col-md-12 hide">
            <h4 class="text-success">JSON</h4> 
@@ -75,5 +79,6 @@
         
    </div>
 </div>
+<div ng-include src="'i/commonmodal.inc.html'"></div>
 </body>
 </html>
