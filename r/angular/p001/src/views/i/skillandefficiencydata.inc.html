@@ -1,0 +1,26 @@
+<!-- @Skill and efficiency:TAB CONTENT : START -->
+                  <div class="panel-group" role="tablist" aria-multiselectable="true" ng-repeat="n in formOptions.technical.skillsets">
+				  <div class="panel panel-success">
+						<div class="panel-heading" role="tab">
+							<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">{{n[0]}}</a></h4>
+						</div>
+						<div id="collapse{{$index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+							<div class="panel-body">
+								<div class="col-md-4" ng-repeat="skill in n[1]">
+									<div class="checkbox"><label for="{{skill}}" title="HTML"><input type="checkbox" name="{{skill}}"/> {{skill}}</label></div>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</div>		   
+			   
+			   <hr/>
+               <div class="container-fluid">                        
+                       <div class="col-md-12">
+                            <div class="form-group">
+                                 <input name="additionalSkill" type="text" class="form-control" placeholder="Additional skills which are not listed">
+                            </div>
+                       </div>
+                   
+               </div>
+               <!-- @Skill and efficiency:TAB CONTENT : END -->

@@ -1,6 +1,9 @@
 var registrationCtrl = function($scope, $http) {
     var tabReady = false;
     $scope.moduleHeading = "Employee registration";
+    $scope.includeTemplates = {
+        personalData: 'i/personaldata.inc.html'
+    };
     $scope.dateFormatString = "DD-MM-YYYY";
     $scope.dataToCapture = {
         name: null,
@@ -55,7 +58,7 @@ var registrationCtrl = function($scope, $http) {
 
     $scope.updateDateInScope = function() {
         console.log('updateDateInScope');
-        
+
     };
 
     $scope.implementTabPanel = function() {
@@ -81,41 +84,42 @@ var registrationCtrl = function($scope, $http) {
             }
         }
     };
-    
-    $scope.deleteProject = function(idToDelete){       
-        
-        $scope.dataToCapture.projects = _.reject($scope.dataToCapture.projects,function(proj){
+
+
+    $scope.deleteProject = function(idToDelete) {
+
+        $scope.dataToCapture.projects = _.reject($scope.dataToCapture.projects, function(proj) {
             return (proj.id === idToDelete);
-        }); 
-               
+        });
+
     }
-    
-    $scope.claenCurrentProject = function(){
+
+    $scope.claenCurrentProject = function() {
         $('div[data-id="projectSet"]').removeClass('hide');
-        $scope.currentProject={};
+        $scope.currentProject = {};
     }
-    
-	$scope.editProject = function(i){	
-		
-		$scope.currentProject = $scope.dataToCapture.projects[i];
-		
-	};
-	
-    $scope.updateProject = function(){
-	
-		$(document).scrollTop(0);
-        if($scope.currentProject.id===undefined || $scope.currentProject.id===null){
-			$scope.currentProject.id = '_id'+(Math.random()+'').split('.')[1];		
-			$scope.dataToCapture.projects.push($scope.currentProject);
-			$scope.currentProject = {};
-		}else{			
-			var proj;
-			proj = _.find($scope.dataToCapture.projects,function(proj){
-                    return proj.id == $scope.currentProject.id;
-			});			
-			proj = $scope.currentProject;
-              $scope.currentProject={};
-		}
+
+    $scope.editProject = function(i) {
+
+        $scope.currentProject = $scope.dataToCapture.projects[i];
+
+    };
+
+    $scope.updateProject = function() {
+
+        $(document).scrollTop(0);
+        if ($scope.currentProject.id === undefined || $scope.currentProject.id === null) {
+            $scope.currentProject.id = '_id' + (Math.random() + '').split('.')[1];
+            $scope.dataToCapture.projects.push($scope.currentProject);
+            $scope.currentProject = {};
+        } else {
+            var proj;
+            proj = _.find($scope.dataToCapture.projects, function(proj) {
+                return proj.id == $scope.currentProject.id;
+            });
+            proj = $scope.currentProject;
+            $scope.currentProject = {};
+        }
     };
 
     $scope.loadFormData = function() {
@@ -127,6 +131,12 @@ var registrationCtrl = function($scope, $http) {
 
     };
 
+    $scope.renderTabbedPane = function() {
+
+        var t = new TabbedPanel();
+
+    };
+
     $scope.loadFormData();
 
 };
@@ -134,4 +144,3 @@ var registrationCtrl = function($scope, $http) {
 empDataMantSystem.controller('registrationCtrl', registrationCtrl);
 
 /*Registration controller*/
-

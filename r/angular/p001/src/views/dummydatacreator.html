@@ -14,7 +14,7 @@
 <script src="../app/lib/jquery/jquery.min.js"></script>
 <script src="../app/lib/underscore/underscore.js"></script>
 <script src="../app/lib/angular/angular.js"></script>
-<script src="../app/lib/angular/angular-ui-router"></script>
+<script src="../app/lib/angular/angular-ui-router.js"></script>
 <!-- JS LIBS :end -->
 <!-- JS :start -->
 <script src="../app/urls.js"></script>
@@ -27,9 +27,9 @@
 <!-- JS :end -->
 <body>
    
-    <div class="container-fluid bgBlack pt10">
-      <h3>Register Employee</h3>
-    </div>
+    <nav class="container-fluid bgBlack pt10">
+      <h3 class="masterHeading">Register Employee</h3>
+    </nav>
 <div class="container-fluid">    
     
    <div class="row" ng-controller="registrationCtrl">
@@ -37,7 +37,10 @@
         <div class="col-md-12">
            <div class="tabbedAnchors appPT"> 
             <ul class="nav nav-tabs">
-				<li role="presentation" ng-repeat="i in segmentNames"><a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a></li>                
+				<li role="presentation" ng-repeat="i in segmentNames">
+					<a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a>
+					<span ng-if="segmentNames.length-1 == $index">{{renderTabbedPane();}}</span>
+				</li>					
             </ul>
           </div>
 		  <div class="container-fluid noLeftPD">
@@ -46,270 +49,21 @@
 			</div>
             <hr/>
 		  </div>
-         
-          
-            <form name="employeeRegistration">				
-				<div data-prop="tabContent-registration">
-				<!-- @Personal Data:TAB CONTENT : START -->
-				
-                <div class="form-group">
-                     <label for="nameOfEmployee">Name</label>
-                     <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.nameOfEmployee.$error.required"></span>
-                     <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.nameOfEmployee.$error.required"></span>
-                     <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name" ng-model="dataToCapture.name"  ng-required="true"/>                     
-                </div>
-                <div class="form-group">
-                     <label for="surnameOfEmployee">Surname</label>
-                     <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.surnameOfEmployee.$error.required"></span>
-                     <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.surnameOfEmployee.$error.required"></span>
-                     <input name="surnameOfEmployee" type="text" class="form-control" placeholder="Surname" ng-model="dataToCapture.surname" ng-required="true"/>
-                </div>
-                <div class="form-group">
-                     <label for="DOBOfEmployee">Date of birth</label>
-                     <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.DOBOfEmployee.$error.required"></span>
-                     <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.DOBOfEmployee.$error.required"></span>
-                     <input maxlength="10" name="DOBOfEmployee" type="text" class="form-control" placeholder="{{dateFormatString}}" data-prop="date" ng-model="dataToCapture.dob" ng-required="true"/>
-                </div>
-				<div class="checkbox">                    
-                     <label for="sexOfEmployee">
-                        <input type="radio" name="sexOfEmployee" value="Male" ng-model="dataToCapture.sex" /> Male
-                     </label>
-                     <label for="sexOfEmployee">
-                        <input type="radio" name="sexOfEmployee" value="Female" ng-model="dataToCapture.sex"/> Female
-                     </label>
-                     <label for="sexOfEmployee">
-                        <input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex" /> Not to mention
-                     </label>
-                </div>
-               <div class="form-group">
-                    <label for="bloodGroupOfEmployee">Blood Group</label>
-                    <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.bGroupOfEmployee.$error.required"></span>
-                    <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.bGroupOfEmployee.$error.required"></span>
-                    <select name="bGroupOfEmployee" class="form-control" ng-model="dataToCapture.bloodGroup" ng-required="true">
-						<option ng-repeat="bl in formOptions.medical.bloodGroups" value="{{bl}}">{{bl}}</option>                        
-                    </select>
-               </div>              
-               <!-- @Personal Data:TAB CONTENT : END -->
-               </div>
-			   
-               <div data-prop="tabContent-registration">
-				<!-- @Contact Data:TAB CONTENT : START -->
-                    <div class="form-group">
-                        <label for="addressOfEmployee">Address</label>
-                        <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.addressOfEmployee.$error.required"></span>
-                        <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.addressOfEmployee.$error.required"></span>    
-                        <input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address"  ng-required="true"/>                   
-                    </div>
-               <div class="form-group">
-                   <label for="addressOfEmployee">Pin/Zip</label> 
-                   <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.pinOfEmployee.$error.required"></span>
-                   <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.pinOfEmployee.$error.required"></span>   
-                   <input maxlength="6" name="pinOfEmployee" type="number" class="form-control" placeholder="Pin" ng-model="dataToCapture.pin" ng-required="true">
-                   
-               </div>
-               <div class="form-group">
-                   <label for="countryOfEmployee">Country</label> 
-                   <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.countryOfEmployee.$error.required"></span>
-                   <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.countryOfEmployee.$error.required"></span>   
-                   <select name="countryOfEmployee" class="form-control" placeholder="country" ng-model="dataToCapture.country"  ng-required="true" >
-						<option ng-repeat="c in formOptions.address.countries" value="{{c.code}}">
-							{{c.name}}
-						</option>
-				   </select>
-               </div>
-               <div class="form-group">
-                   <label for="stateOfEmployee">State</label> 
-                   <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.stateOfEmployee.$error.required"></span>
-                   <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.stateOfEmployee.$error.required"></span>   
-                   <input name="stateOfEmployee" type="text" class="form-control" placeholder="state" ng-model="dataToCapture.state" ng-required="true"/>
-               </div>
-               
-                    <div class="form-group">
-                        <label for="phoneOfEmployee">Phone</label> 
-                        <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.phoneOfEmployee.$error.required"></span>
-                        <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.phoneOfEmployee.$error.required"></span>
-                        <input name="phoneOfEmployee" type="number" class="form-control" placeholder="Address" ng-model="dataToCapture.phone" ng-required="true"/>
-                    </div>
-                    
-                   
-                <!-- @Contact Data:TAB CONTENT : START -->
-               </div>
-               
-			   
-			   
-			   <div data-prop="tabContent-registration">
-                    <!-- @Identity details:TAB CONTENT : START -->               
-                        <div class="form-group">
-                            <label for="passport">Passport</label> 
-                            <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.passport.$error.required"></span>
-                            <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.passport.$error.required"></span>
-                            <input name="passport" type="number" class="form-control" placeholder="Passport" ng-model="dataToCapture.passport" ng-required="true"/>
-                        </div>
-                       <div class="form-group">
-                           <label for="passport">Passport validity</label>
-                           <input maxlength="10" name="passportValidity" type="text" class="form-control" placeholder="{{dateFormatString}}" data-prop="date"/>                           
-                       </div>
-                       
-                   <!-- @Identity details:TAB CONTENT : END -->
-			   </div>
-			   
-               <div data-prop="tabContent-registration">
-               <!-- @Skill and efficiency:TAB CONTENT : START -->
-                  <div class="panel-group" role="tablist" aria-multiselectable="true" ng-repeat="n in formOptions.technical.skillsets">
-				  <div class="panel panel-success">
-						<div class="panel-heading" role="tab">
-							<h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">{{n[0]}}</a></h4>
-						</div>
-						<div id="collapse{{$index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-							<div class="panel-body">
-								<div class="col-md-4" ng-repeat="skill in n[1]">
-									<div class="checkbox"><label for="{{skill}}" title="HTML"><input type="checkbox" name="{{skill}}"/> {{skill}}</label></div>
-								</div>
-							</div>
-						</div>
-					</div> 
-				</div>		   
-			   
-			   <hr/>
-               <div class="container-fluid">                        
-                       <div class="col-md-12">
-                            <div class="form-group">
-                                 <input name="additionalSkill" type="text" class="form-control" placeholder="Additional skills which are not listed">
-                            </div>
-                       </div>
-                   
-               </div>
-               <!-- @Skill and efficiency:TAB CONTENT : END -->
-			   </div>
-               
-			   
-			   <div data-prop="tabContent-registration">
-               <!-- @Projects:TAB CONTENT : START -->
-                   
-                    <div class="row">
-                       <div class="col-md-4">
-                        <a ng-click="claenCurrentProject()" class="btn btn-success btn-small">Add new project <span class="glyphicon glyphicon-plus"></span></a>
-                        <hr/>
-                        <div class="list-group">
-						
-                            <div class="list-group-item" ng-repeat="p in dataToCapture.projects">
-                               <div class="row">
-                                    <div class="col-md-10">
-                                        <h4 class="list-group-item-heading text-info smallLevelText">{{p.projectName}}</h4>
-                                        <p class="list-group-item-text smallLevelText">{{p.briefDescription}}</p>
-                                        <p class="list-group-item-text text-info smallLevelText">{{p.startDate}}&nbsp;&nbsp;&nbsp;{{p.endDate}}</p>
-                                    </div>
-                                    <div class="col-md-2">
-                                          <a ng-click='deleteProject(p.id)' class="btn btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
-                                          <a ng-click="editProject($index)" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    </div>
-                               </div>
-                               
-							   
-							   <div class="btn-group">
-                                        
-                                   </div>
-                            </div>
-                            
-                        </div>
-                       </div> 
-                       <div class="col-md-8">
-                            <div data-id="projectSet" class="projectSet hide">
-                                <div class="form-group">
-                                    <label for="projectName">Project Name / Heading</label> 
-                                    <input ng-model="currentProject.projectName" name="projectName" type="text" class="form-control" placeholder="Project Name">                   
-                                </div>
-                                <div class="form-group">
-                                    <label for="briefDescription">Brief Description</label> 
-                                    <input ng-model="currentProject.briefDescription" name="briefDescription" type="text" class="form-control" placeholder="Brief Description">                   
-                                </div>
-                                <div class="form-group">
-                                    <label for="client">Client/Business body</label> 
-                                    <input ng-model="currentProject.client" name="client" type="text" class="form-control" placeholder="Client">                   
-                                </div>                        
-                                <div class="form-group">
-                                    <label for="briefDescription">Detail Description</label> 
-                                    <textarea ng-model="currentProject.detailDescription" name="detailDescription" class="form-control" placeholder="Detail Description"></textarea>                   
-                                </div>
-                                <div class="form-group">
-                                    <label for="roleInTheProject">My role in the Project (in Detail)</label> 
-                                    <textarea ng-model="currentProject.roleInTheProject" name="roleInTheProject" class="form-control" placeholder="Role in the project"></textarea>                   
-                                </div>
-                                <div class="form-group">
-                                    <label for="briefDescription">Project Duration</label> 
-                                    <div class="container-fluid">
-                                        <div class="col-md-1">
-                                        <label for="briefDescription">Start</label> 
-                                        </div>
-                                        <div class="col-md-5">
-                                            <input ng-model="currentProject.startDate" name="startDate" type="text" class="form-control" placeholder="Start Date" data-prop="date">  
-                                        </div>
-                                        <div class="col-md-1">
-                                        <label for="briefDescription">End</label> 
-                                        </div>
-                                        <div class="col-md-5">
-                                            <input ng-model="currentProject.endDate" name="endDate" type="text" class="form-control" placeholder="End Date" data-prop="date">  
-                                        </div>
-                                    </div>
-                                                       
-                                </div>
-                                <div class="form-group">
-                                    <label for="achievement">Technologies used</label> 
-                                    <input ng-model="currentProject.technologies" name="achievement" type="text" class="form-control" placeholder="Put technologies in comma separated way">  
-                                </div>
-                                <div class="form-group">
-                                    <label for="achievement">Major achievement</label> 
-                                    <input ng-model="currentProject.achievement" name="achievement" type="text" class="form-control" placeholder="Achievement">  
-                                </div>
-                                <div class="form-group">
-                                    <label for="achievement">Challenge you faced</label> 
-                                    <input ng-model="currentProject.challenge" name="challenge" type="text" class="form-control" placeholder="Challenge">  
-                                </div>
-                                <div class="form-group">
-                                    <label for="achievement">Demo url (if any)</label> 
-                                    <input ng-model="currentProject.demoUrl" name="demoUrl" type="text" class="form-control" placeholder="Demo URL">  
-                                </div>
-                                <div class="form-group">
-                                    <label for="achievement">Live url (if any)</label> 
-                                    <input ng-model="currentProject.liveUrl" name="liveUrl" type="text" class="form-control" placeholder="Live URL">  
-                                </div>
-                                <div class="form-group">
-                                    <label for="achievement">Award/Appreciation (if any)</label> 
-                                    <input ng-model="currentProject.awardAppreciation" name="awardAppreciation" type="text" class="form-control" placeholder="Live URL">  
-                                </div>
-                                <div class="form-group">
-                                    <label for="achievement">Anything special you want to add</label> 
-                                    <input ng-model="currentProject.specialNote" name="liveUrl" type="text" class="form-control" placeholder="Special you want to add">  
-                                </div>
-                                <div class="form-group">
-                                    <a ng-click="updateProject()" class="btn btn-success">Save project</a>
-                                </div>
-                            </div>
-                            
-                       </div>     
-                    </div>
-                <!-- @Projects:TAB CONTENT : END -->  
-				</div>
-                
-                <div data-prop="tabContent-registration">
-				<!-- @Photograph:TAB CONTENT : START -->
-					<div class="container-fluid appPT" data-action="selfie">
-                        <div class="col-md-6">
-                            <video class="boxCommon" autoplay="true" src="" width="320" height="320"/>
-                        </div>
-                         <div class="col-md-6">
-                            <canvas class="boxCommon" width="320" height="320"></canvas>
-                        </div>
-                    </div>
-				<!-- @Photograph:TAB CONTENT : END -->
-			   </div>
-				
+		    
+			<form name="employeeRegistration">				
+				<div data-prop="tabContent-registration" ng-include src="'i/personaldata.inc.html'"></div>			   
+                <div data-prop="tabContent-registration" ng-include src="'i/contactdata.inc.html'"></div>
+				<div data-prop="tabContent-registration" ng-include src="'i/identitydata.inc.html'"></div>			   
+                <div data-prop="tabContent-registration" ng-include src="'i/skillandefficiencydata.inc.html'"></div>
+				<div data-prop="tabContent-registration" ng-include src="'i/projectdata.inc.html'"></div>                
+                <div data-prop="tabContent-registration" ng-include src="i/photograph.inc.html"></div>
+			    <div data-prop="tabContent-registration" ng-include src="'i/misc.inc.html'"></div>				
             </form>
+			
 			<hr/>
 			
-			
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 hide">
            <h4 class="text-success">JSON</h4> 
            <hr/> 
           <form name="dummyJSONPool">
@@ -321,11 +75,5 @@
         
    </div>
 </div>
-
-<script id="datePickerTest">
-    /*var d = new DatePicker(); d.makeCalendar();*/
-	var t = new TabbedPanel();
-    /*Selfie({width:340,height:340});*/
-</script>
 </body>
 </html>

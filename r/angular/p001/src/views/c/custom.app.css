@@ -7,6 +7,10 @@ background:black;
 color:white;
 }
 
+h3.masterHeading{
+margin:10px 0;
+}
+
 .main-nav-container{
 padding-top:25px;
 }

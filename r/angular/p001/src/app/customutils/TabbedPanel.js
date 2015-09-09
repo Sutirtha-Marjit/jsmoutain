@@ -1,6 +1,7 @@
 function TabbedPanel() {
 
-    var self = this;
+    var firstTab,self = this;
+	
     var configure = function() {
         $(document).on('click', 'a[data-prop^="tabAction"]', function(e) {
             e.preventDefault();
@@ -15,9 +16,12 @@ function TabbedPanel() {
             $('*[data-prop="tabContentHead-' + tabRoot + '"]').text($(e.currentTarget).text());
         });
         
-        $('*[data-prop^="tabAction"]:first:not(.executed)').trigger('click');
-        $('*[data-prop^="tabAction"]:first').addClass('executed');
+		firstTab = $('*[data-prop^="tabAction"]:first:not(.executed)');
+		firstTab.trigger('click');
+        firstTab.addClass('executed');
+		
     };
-
+	
+	
     configure();
 }

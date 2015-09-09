@@ -1,0 +1,45 @@
+<!-- @Contact Data:TAB CONTENT : START -->
+<div class="form-group">
+	<label for="addressOfEmployee">Address</label>
+	<span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.addressOfEmployee.$error.required"></span>
+	<span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.addressOfEmployee.$error.required"></span>    
+	<input name="addressOfEmployee" type="text" class="form-control" placeholder="Address" ng-model="dataToCapture.address"  ng-required="true"/>                   
+</div>
+<div class="form-group">
+<label for="addressOfEmployee">Pin/Zip</label> 
+<span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.pinOfEmployee.$error.required"></span>
+<span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.pinOfEmployee.$error.required"></span>   
+<input maxlength="6" name="pinOfEmployee" type="number" class="form-control" placeholder="Pin" ng-model="dataToCapture.pin" ng-required="true">
+
+</div>
+<div class="form-group">
+<label for="countryOfEmployee">Country</label> 
+<span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.countryOfEmployee.$error.required"></span>
+<span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.countryOfEmployee.$error.required"></span>   
+<select name="countryOfEmployee" class="form-control" placeholder="country" ng-model="dataToCapture.country"  ng-required="true" >
+	<option ng-repeat="c in formOptions.address.countries" value="{{c.code}}">
+		{{c.name}}
+	</option>
+</select>
+</div>
+<div class="form-group">
+<label for="stateOfEmployee">State</label> 
+<span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.stateOfEmployee.$error.required"></span>
+<span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.stateOfEmployee.$error.required"></span>   
+<input name="stateOfEmployee" type="text" class="form-control" placeholder="state" ng-model="dataToCapture.state" ng-required="true"/>
+</div>
+
+<div class="form-group">
+<label for="phoneOfEmployee">Phone</label> 
+<span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.phoneOfEmployee.$error.required"></span>
+<span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.phoneOfEmployee.$error.required"></span>
+<input name="phoneOfEmployee" type="number" class="form-control" placeholder="Address" ng-model="dataToCapture.phone" ng-required="true"/>
+</div>
+
+<div class="form-group">
+<label for="emailOfEmployee">Email</label> 
+<span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.emailOfEmployee.$error.required"></span>
+<span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.emailOfEmployee.$error.required"></span>
+<input name="emailOfEmployee" type="email" class="form-control" placeholder="Email" ng-model="dataToCapture.email" ng-required="true"/>
+</div>                  
+<!-- @Contact Data:TAB CONTENT : START -->
