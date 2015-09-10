@@ -28,7 +28,7 @@ var registrationCtrl = function($scope, $http) {
         name: "Skill and efficiency",
         icon: "knight"
     }, {
-        name: "Projects",
+        name: " Projects",
         icon: "folder-open"
     }, {
         name: "Photograph",

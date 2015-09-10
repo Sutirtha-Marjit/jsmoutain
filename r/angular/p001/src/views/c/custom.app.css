@@ -1,11 +1,32 @@
+@import url("bootstrap.override.css");
 /*ALL CUSTOM CSS*/
-.bgBlack{
-background:black;
+nav{
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index:9999;
+    width:100%;
+    box-shadow:1px 1px 7px 0px rgba(50, 50, 50, 0.56);
+}
+.topNavW{
+    background: linear-gradient(to bottom, #ffffff 0%,#e8e8e8 100%);
+    border-bottom:1px solid #EFEFEF;    
 }
 
-.bgBlack *{
-color:white;
+.appBodyContent{
+    margin:75px 0 0 0;
 }
+
+.topNavW>.btn-group{
+    float:right;
+}
+
+.bgBlack{
+border-bottom:1px solid #EFEFEF;
+background: linear-gradient(to bottom, #ffffff 0%,#FCFCFC 100%);
+}
+
+
 
 h3.masterHeading{
 margin:10px 0;
