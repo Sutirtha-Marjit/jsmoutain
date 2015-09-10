@@ -2,7 +2,7 @@
                    
                     <div class="row">
                        <div class="col-md-4">
-                        <a ng-click="claenCurrentProject()" class="btn btn-success btn-small">Add new project <span class="glyphicon glyphicon-plus"></span></a>
+                        <a ng-click="claenCurrentProject()" class="btn btn-primary btn-small">Add new project <span class="glyphicon glyphicon-plus"></span></a>
                         <hr/>
                         <div class="list-group">
 						
@@ -14,7 +14,7 @@
                                         <p class="list-group-item-text text-info smallLevelText">{{p.startDate}}&nbsp;&nbsp;&nbsp;{{p.endDate}}</p>
                                     </div>
                                     <div class="col-md-2">
-                                          <a title="Delete this project" ng-click='deleteProject(p.id)' class="btn btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                                          <a title="Delete this project" ng-click='deleteProject(p.id)' class="btn btn-sm text-danger"><span class="glyphicon glyphicon-trash"></span></a>
                                           <a title="Open for edit" ng-click="editProject($index)" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
                                     </div>
                                </div>
@@ -29,6 +29,7 @@
                        </div> 
                        <div class="col-md-8">
                             <div data-id="projectSet" class="projectSet hide">
+								<span>{{currentProject.id}}</span>
                                 <div class="form-group">
                                     <label for="projectName">Project Name / Heading</label> 
                                     <input ng-model="currentProject.projectName" name="projectName" type="text" class="form-control" placeholder="Project Name">                   
@@ -96,7 +97,7 @@
                                     <input ng-model="currentProject.specialNote" name="liveUrl" type="text" class="form-control" placeholder="Special you want to add">  
                                 </div>
                                 <div class="form-group">
-                                    <a ng-click="updateProject()" class="btn btn-success">Save project</a>
+                                    <a ng-click="updateProject()" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span> Save project</a>
                                 </div>
                             </div>
                             

@@ -43,14 +43,7 @@ var registrationCtrl = function($scope, $http) {
             medicalDisabilities: ['Eye', 'Ear', 'Nose', 'Throat', 'Hands', 'Legs', 'Spine', 'Nervous System', 'Hormonal', 'Others']
         },
         technical: {
-            skillsets: [
-                ['Analytics', ['Analytics', 'Data Analytics', 'Statistical Modeling', 'Predictive Analytics', 'Logistic Regression', 'Data Science', 'Data Trends']],
-                ['Application Development', []],
-                ['Attention to Detail', []],
-                ['Architecture', []],
-                ['Big Data', []],
-                ['Business Analytics', []]
-            ]
+            
         },
 
         address: {}
@@ -70,6 +63,11 @@ var registrationCtrl = function($scope, $http) {
         $scope.dataToCapture.projects = _.reject($scope.dataToCapture.projects, function(proj) {
             return (proj.id === idToDelete);
         });
+		
+		if(idToDelete===$scope.currentProject.id){
+			$scope.currentProject = {};
+			$('div[data-id="projectSet"]').addClass('hide');
+		}
 
     }
 
@@ -79,8 +77,9 @@ var registrationCtrl = function($scope, $http) {
     }
 
     $scope.editProject = function(i) {
-
-        $scope.currentProject = $scope.dataToCapture.projects[i];
+		$('div[data-id="projectSet"]').removeClass('hide');
+		var temp = $scope.dataToCapture.projects[i];
+		$scope.currentProject = temp;
 
     };
 
@@ -96,9 +95,11 @@ var registrationCtrl = function($scope, $http) {
             proj = _.find($scope.dataToCapture.projects, function(proj) {
                 return proj.id == $scope.currentProject.id;
             });
+			
             proj = $scope.currentProject;
             $scope.currentProject = {};
         }
+		$('div[data-id="projectSet"]').addClass('hide');
     };
 
     $scope.loadFormData = function() {
