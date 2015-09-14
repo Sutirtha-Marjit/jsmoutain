@@ -1,14 +1,14 @@
 <div class="row" ng-controller="registrationCtrl">
         
-        <div class="col-md-12">
+        <div class="col-md-12" id="registrationTabPane">
            <div class="tabbedAnchors appPT"> 
-            <ul class="nav nav-tabs">
-				<li role="presentation" ng-repeat="i in segmentNames">
-					<a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a>
-					<span ng-if="segmentNames.length-1 == $index && !tabReady">{{renderTabbedPane();}}</span>
-				</li>					
-            </ul>
-          </div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" ng-repeat="i in segmentNames">
+						<a aria-controls="section_{{$index}}" data-toggle="tab" role="tab" href="section_{{$index}}"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a>
+						<span ng-if="segmentNames.length-1 == $index && !tabReady">{{renderTabbedPane();}}</span>
+					</li>					
+				</ul>
+            </div>
           
 		  <div class="container-fluid noLeftPD">
 			<div class="row">
@@ -17,22 +17,20 @@
             <hr class="shortenHR"/>
 		  </div>
 		    
-			<form name="employeeRegistration">				
-			   <div data-prop="tabContent-registration" ng-include src="'i/personaldata.inc.html'"></div>			   
-                <div data-prop="tabContent-registration" ng-include src="'i/contactdata.inc.html'"></div>
-			  <div data-prop="tabContent-registration" ng-include src="'i/identitydata.inc.html'"></div>			   
-                <div data-prop="tabContent-registration" ng-include src="'i/skillandefficiencydata.inc.html'"></div>
-			  <div data-prop="tabContent-registration" ng-include src="'i/projectdata.inc.html'"></div>                
-                <div data-prop="tabContent-registration" ng-include src="'i/photograph.inc.html'"></div>
-			  <div data-prop="tabContent-registration" ng-include src="'i/misc.inc.html'"></div>				
-            </form>
-			
-			<hr/>
-			
+		  <form name="employeeRegistration">				
+			   <div role="tabpanel" class="tab-pane active"  ng-include src="'i/personaldata.inc.html'"  id="section_0"></div>			   
+			   <div role="tabpanel" class="tab-pane"  ng-include src="'i/contactdata.inc.html'" id="section_1"></div>
+			   <div role="tabpanel" class="tab-pane"  ng-include src="'i/identitydata.inc.html'" id="section_2"></div>			   
+			   <div role="tabpanel" class="tab-pane" ng-include src="'i/skillandefficiencydata.inc.html'" id="section_3"></div>
+			   <div role="tabpanel" class="tab-pane" ng-include src="'i/projectdata.inc.html'" id="section_4"></div>                
+			   <div role="tabpanel" class="tab-pane" ng-include src="'i/photograph.inc.html'" id="section_5"></div>
+			   <div role="tabpanel" class="tab-pane" ng-include src="'i/misc.inc.html'" id="section_6"></div>				
+		  </form>			
+		  <hr/>			
         </div>
        
         <div class="col-md-12">
-        <button ng-click="postData()" class="btn btn-primary">Register now!</button>
+			<button ng-click="postData()" class="btn btn-primary">Register now!</button>
         </div>
         <div class="col-md-12">
            <h4 class="text-success">JSON</h4> 
@@ -42,6 +40,7 @@
                    <textarea name="jsonPool" rows="20"  class="form-control text-success" placeholder="json" disabled>{{dataToCapture}} AND {{currentProject}}</textarea>
                </div>
            </form>
-        </div>
-        
+        </div>        
    </div>
+   
+   

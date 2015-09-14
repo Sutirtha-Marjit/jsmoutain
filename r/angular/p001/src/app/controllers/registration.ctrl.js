@@ -37,6 +37,10 @@ var registrationCtrl = function($scope, $http) {
     }, {
         name: "Misc",
         icon: "file"
+    },
+	{
+        name: "Delete",
+        icon: "trash"
     }];
     $scope.formOptions = {
         medical: {
