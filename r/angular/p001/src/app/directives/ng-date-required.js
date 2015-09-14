@@ -1,4 +1,8 @@
-empDataMantSystem.directive('ng-date-required',function(scope, element, attrs){
-    
-    element.css('display', 'none');
+empDataMantSystem.directive('ng-date-required',function(){
+     return {
+        
+        restrict: 'A',    
+        template:'<a>dasad</a>'
+      
+    };  
 });

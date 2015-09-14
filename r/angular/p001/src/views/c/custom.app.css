@@ -7,6 +7,7 @@ nav{
     z-index:9999;
     width:100%;
     box-shadow:1px 1px 7px 0px rgba(50, 50, 50, 0.56);
+    opacity:0.90;
 }
 
 .sectionHeadingRegistration{
@@ -89,4 +90,8 @@ font-size:12px;
 
 a:link,a.visited,a:hover{
   outline:none !important;  
+}
+
+div.checkbox label:first-child{
+    padding-left:0;
 }

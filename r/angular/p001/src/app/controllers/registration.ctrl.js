@@ -1,5 +1,6 @@
 var registrationCtrl = function($scope, $http) {
-    var tabReady = false;
+    console.log('okokkok');
+    $scope.tabReady = false;
     $scope.moduleHeading = "Employee registration";
     $scope.includeTemplates = {
         personalData: 'i/personaldata.inc.html'
@@ -134,15 +135,15 @@ var registrationCtrl = function($scope, $http) {
     };
 
     $scope.renderTabbedPane = function() {
-
-        var t = new TabbedPanel();
-
+       console.log($scope.tabReady);
+       
+        $scope.tabReady = true;  
     };
 
     $scope.loadFormData();
 
 };
-//empDataMantSystem.controller('registrationCtrl', ['$scope', registrationCtrl]);
-empDataMantSystem.controller('registrationCtrl', registrationCtrl);
+empDataMantSystem.controller('registrationCtrl', ['$scope','$http', registrationCtrl]);
+//empDataMantSystem.controller('registrationCtrl', registrationCtrl);
 
 /*Registration controller*/

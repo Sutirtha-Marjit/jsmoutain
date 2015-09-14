@@ -1,13 +1,56 @@
+<!-- RESOURCE MANAGEMENT SYSTEM -->
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app='empDataMantSystem'>
 <head>
 <title>Application name</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <link href="c/bs/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link href="c/bs/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet"/>
+<link href="c/custom.app.css" type="text/css" rel="stylesheet"/>
+<link href="c/datepicker.css" type="text/css" rel="stylesheet"/>
+<link href="c/tabbedpanel.css" type="text/css" rel="stylesheet"/>
+<!-- JS LIBS :start -->
+<script src="../app/lib/jquery/jquery.min.js"></script>
+<script src="../app/lib/underscore/underscore.js"></script>
+<script src="../app/lib/angular/angular.js"></script>
+<script src="../app/lib/angular/angular-route.js"></script>
+<script src="../app/lib/angular/angular-ui-router.js"></script>
+<!-- JS LIBS :end -->
+<!-- JS :start -->
+<script src="../app/urls.js"></script>
+<script src="../app/app.js"></script>
+<script src="../app/app.config.js"></script>
+<script src="../app/directives/ng-date-required.js"></script>
+<script src="../app/controllers/test.ctrl.js"></script>
+<script src="../app/controllers/app.ctrl.js"></script>
+<script src="../app/controllers/registration.ctrl.js"></script>
+<script src="c/bs/js/bootstrap.min.js"></script>
+<script src="../app/customutils/DatePicker.js"></script>
+<script src="../app/customutils/TabbedPanel.js"></script>
+<script src="../app/customutils/Selfie.js"></script>
+<!-- JS :end -->
 <body>
-<div class="container-fluid">
-<h1>Welcome to application</h1>
-</div>
+    
+    <div id="appWrapper" ng-controller="appCtrl">
+    <nav>
+       <div class="topNavW">
+          <div class="btn-group">
+              <a class="btn" href="#/test">Test</a>  
+              <a class="btn" href="#/registrationpage">Find Resources</a>
+              <a class="btn">Projects</a>
+              <a class="btn">Sign Out</a>
+              <a class="btn">Register</a>
+              <a class="btn">Help</a>
+          </div>
+          <div class="clear"></div>
+       </div>
+       <div class="container-fluid bgBlack pt10"><h3 class="masterHeading">Resource Management System</h3></div>
+    </nav>
+    <div class="container-fluid appBodyContent">
+        <ng-view></ng-view>   
+        Loading...
+    </div>
+    </div>
 </body>
 </html>

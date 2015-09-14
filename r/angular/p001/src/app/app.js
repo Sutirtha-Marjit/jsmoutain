@@ -1,1 +1,1 @@
-var empDataMantSystem = angular.module('empDataMantSystem',[]);
+var empDataMantSystem = angular.module('empDataMantSystem',['ui.router','ngRoute']);
