@@ -1,5 +1,5 @@
 var testCtrl = function($scope,$http){
-    $scope.name = "test heading";
+    $scope.name = "Test heading";
     $scope.segmentNames = [{
         name: "Personal Data",
         icon: "user"

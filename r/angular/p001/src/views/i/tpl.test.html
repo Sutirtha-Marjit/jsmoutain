@@ -1,11 +1,5 @@
-<div class="row" ng-controller="testCtrl">   
-        <h1>{{name}}</h1>
-         <div class="tabbedAnchors appPT"> 
-            <ul class="nav nav-tabs">
-				<li role="presentation" ng-repeat="i in segmentNames">
-					<a data-prop="tabAction-registration" href="#"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a>
-					<span ng-if="segmentNames.length-1 == $index">{{renderTabbedPane();}}</span>
-				</li>					
-            </ul>
-          </div>
+<div class="container-fluid">
+    <div class="row" ng-controller="testCtrl">   
+            <h3 class="text-primary">{{name}}</h3>             
+    </div>
 </div>

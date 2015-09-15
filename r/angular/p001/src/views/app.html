@@ -25,6 +25,7 @@
 <script src="../app/controllers/test.ctrl.js"></script>
 <script src="../app/controllers/app.ctrl.js"></script>
 <script src="../app/controllers/registration.ctrl.js"></script>
+<script src="../app/controllers/projects.ctrl.js"></script>
 <script src="c/bs/js/bootstrap.min.js"></script>
 <script src="../app/customutils/DatePicker.js"></script>
 <script src="../app/customutils/TabbedPanel.js"></script>
@@ -33,24 +34,17 @@
 <body>
     
     <div id="appWrapper" ng-controller="appCtrl">
-    <nav>
-       <div class="topNavW">
-          <div class="btn-group">
-              <a class="btn" href="#/test">Test</a>  
-              <a class="btn" href="#/registrationpage">Find Resources</a>
-              <a class="btn">Projects</a>
-              <a class="btn">Sign Out</a>
-              <a class="btn">Register</a>
-              <a class="btn">Help</a>
-          </div>
-          <div class="clear"></div>
-       </div>
-       <div class="container-fluid bgBlack pt10"><h3 class="masterHeading">Resource Management System</h3></div>
-    </nav>
+    <nav ng-include src="'i/mainnav.inc.html'"></nav>
     <div class="container-fluid appBodyContent">
-        <ng-view></ng-view>   
+        <ng-view>
         Loading...
+        </ng-view>   
+        
     </div>
+    </div>
+    <div class="inProgressModel">
+        <div class="overlay"></div>
+        <div class="round"></div>
     </div>
 </body>
 </html>

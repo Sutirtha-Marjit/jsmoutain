@@ -5,9 +5,24 @@ empDataMantSystem.config(function($routeProvider){
         templateUrl:'i/tpl.registration.html',
         controller:null
     })
+    .when('/resourcedetail',{
+        templateUrl:'i/tpl.resourcedetail.html',
+        controller:null
+    })
+    .when('/projects',{
+        templateUrl:'i/tpl.project.html',
+        controller:null
+    })    
     .when('/test',{
         templateUrl:'i/tpl.test.html',
         controller:null
+    })
+    .when('/welcome',{
+        templateUrl:'i/tpl.welcome.html',
+        controller:null
+    })
+    .otherwise({
+        redirectTo:'/welcome'      
     })
     
 });

@@ -1,6 +1,6 @@
 var registrationCtrl = function($scope, $http) {
-    console.log('okokkok');
-    $scope.tabReady = false;
+    
+    $scope.sectionHeadingRegistration = "Loading";
     $scope.moduleHeading = "Employee registration";
     $scope.includeTemplates = {
         personalData: 'i/personaldata.inc.html'
@@ -37,11 +37,9 @@ var registrationCtrl = function($scope, $http) {
     }, {
         name: "Misc",
         icon: "file"
-    },
-	{
-        name: "Delete",
-        icon: "trash"
     }];
+    
+    $scope.sectionHeadingRegistration = $scope.segmentNames[0].name;
     $scope.formOptions = {
         medical: {
             bloodGroups: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', 'Others'],
@@ -64,7 +62,8 @@ var registrationCtrl = function($scope, $http) {
     };
    
     $scope.deleteProject = function(idToDelete) {
-
+                 
+        if(confirm("Do you want to delete this project?")){
         $scope.dataToCapture.projects = _.reject($scope.dataToCapture.projects, function(proj) {
             return (proj.id === idToDelete);
         });
@@ -73,7 +72,7 @@ var registrationCtrl = function($scope, $http) {
 			$scope.currentProject = {};
 			$('div[data-id="projectSet"]').addClass('hide');
 		}
-
+        }
     }
 
     $scope.claenCurrentProject = function() {
@@ -138,10 +137,15 @@ var registrationCtrl = function($scope, $http) {
           });*/
     };
 
-    $scope.renderTabbedPane = function() {
-       console.log($scope.tabReady);
-       
-        $scope.tabReady = true;  
+    $scope.renderTabbedPane = function($event) {
+      $event.preventDefault();  
+      $scope.sectionHeadingRegistration =  $($event.currentTarget).text(); 
+      $('*[role="tabpanel"]').addClass('hide');
+      $('#'+$($event.currentTarget).attr('aria-controls')).removeClass('hide');
+    };
+    
+    $scope.activeFirstTab = function(){
+       // $('li[role="presentation"]:first a').trigger('click');
     };
 
     $scope.loadFormData();

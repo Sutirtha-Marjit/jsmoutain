@@ -2,29 +2,31 @@
         
         <div class="col-md-12" id="registrationTabPane">
            <div class="tabbedAnchors appPT"> 
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" ng-repeat="i in segmentNames">
-						<a aria-controls="section_{{$index}}" data-toggle="tab" role="tab" href="section_{{$index}}"><span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}</a>
-						<span ng-if="segmentNames.length-1 == $index && !tabReady">{{renderTabbedPane();}}</span>
-					</li>					
-				</ul>
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" ng-repeat="i in segmentNames">
+					<a ng-click="renderTabbedPane($event)" aria-controls="section_{{$index}}" href="#" data-toggle="tab" role="tab">
+                       <span class="glyphicon glyphicon-{{i.icon}}"></span> {{i.name}}
+                    </a>
+                    <span ng-if="$index == segmentNames.length-1">{{activeFirstTab()}}</span>                    
+				</li>					
+			</ul>
             </div>
           
 		  <div class="container-fluid noLeftPD">
 			<div class="row">
-				<div class="col-md-8"><h4 data-prop="tabContentHead-registration" class="text-primary sectionHeadingRegistration">Personal data</h4></div>				
+				<div class="col-md-8"><h3 class="text-primary sectionHeadingRegistration">{{sectionHeadingRegistration}}</h3></div>				
 			</div>
             <hr class="shortenHR"/>
 		  </div>
 		    
 		  <form name="employeeRegistration">				
-			   <div role="tabpanel" class="tab-pane active"  ng-include src="'i/personaldata.inc.html'"  id="section_0"></div>			   
-			   <div role="tabpanel" class="tab-pane"  ng-include src="'i/contactdata.inc.html'" id="section_1"></div>
-			   <div role="tabpanel" class="tab-pane"  ng-include src="'i/identitydata.inc.html'" id="section_2"></div>			   
-			   <div role="tabpanel" class="tab-pane" ng-include src="'i/skillandefficiencydata.inc.html'" id="section_3"></div>
-			   <div role="tabpanel" class="tab-pane" ng-include src="'i/projectdata.inc.html'" id="section_4"></div>                
-			   <div role="tabpanel" class="tab-pane" ng-include src="'i/photograph.inc.html'" id="section_5"></div>
-			   <div role="tabpanel" class="tab-pane" ng-include src="'i/misc.inc.html'" id="section_6"></div>				
+			   <div role="tabpanel" class="tab-pane"  ng-include src="'i/personaldata.inc.html'"  id="section_0"></div>			   
+			   <div role="tabpanel" class="tab-pane hide"  ng-include src="'i/contactdata.inc.html'" id="section_1"></div>
+			   <div role="tabpanel" class="tab-pane hide"  ng-include src="'i/identitydata.inc.html'" id="section_2"></div>			   
+			   <div role="tabpanel" class="tab-pane hide" ng-include src="'i/skillandefficiencydata.inc.html'" id="section_3"></div>
+			   <div role="tabpanel" class="tab-pane hide" ng-include src="'i/projectdata.inc.html'" id="section_4"></div>                
+			   <div role="tabpanel" class="tab-pane hide" ng-include src="'i/photograph.inc.html'" id="section_5"></div>
+			   <div role="tabpanel" class="tab-pane hide" ng-include src="'i/misc.inc.html'" id="section_6"></div>				
 		  </form>			
 		  <hr/>			
         </div>
