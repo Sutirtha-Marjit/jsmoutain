@@ -1,42 +1,26 @@
+
+empDataMantSystem.routerList = [
+	['/registrationpage','i/tpl.registration.html',null],
+	['/resourcedetail','i/tpl.resourcedetail.html',null],
+	['/projects','i/tpl.project.html',null],
+	['/test','i/tpl.test.html',null],
+	['/z$90qtxcv0807dxqtasf','i/tpl.settings.html',null],
+	['/welcome','i/tpl.welcome.html',null]
+];
+
 /*CONFIGURATION MANAGEMENT BLOCK : Start*/
+
 empDataMantSystem.config(function($routeProvider){
-    console.log('CONFIG STARTS');
-    $routeProvider.when('/registrationpage',{
-        templateUrl:'i/tpl.registration.html',
-        controller:null
-    })
-    .when('/resourcedetail',{
-        templateUrl:'i/tpl.resourcedetail.html',
-        controller:null
-    })
-    .when('/projects',{
-        templateUrl:'i/tpl.project.html',
-        controller:null
-    })    
-    .when('/test',{
-        templateUrl:'i/tpl.test.html',
-        controller:null
-    })
-    .when('/welcome',{
-        templateUrl:'i/tpl.welcome.html',
-        controller:null
-    })
-    .otherwise({
-        redirectTo:'/welcome'      
-    })
-    
+	
+	for(var i=0;i<empDataMantSystem.routerList.length;i++){
+		
+		$routeProvider.when(empDataMantSystem.routerList[i][0],{
+        templateUrl:empDataMantSystem.routerList[i][1],
+        controller:empDataMantSystem.routerList[i][2]
+		});	
+	}
+
 });
 
-
-
-empDataMantSystem.controller('StudentController', function($scope) {
-    $scope.students = [
-        {name: 'Mark Waugh', city:'New York'},
-        {name: 'Steve Jonathan', city:'London'},
-        {name: 'John Marcus', city:'Paris'}
-    ];
- 
-    $scope.message = "Click on the hyper link to view the students list.";
-});
 
 /*CONFIGURATION MANAGEMENT BLOCK : End*/

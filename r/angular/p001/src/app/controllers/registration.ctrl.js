@@ -140,11 +140,11 @@ var registrationCtrl = function($scope, $http) {
     };
 
     $scope.renderTabbedPane = function($event) {
-     /*
+     
      $event.preventDefault();  
       $scope.sectionHeadingRegistration =  $($event.currentTarget).text(); 
       $('*[role="tabpanel"]').addClass('hide');
-      $('#'+$($event.currentTarget).attr('aria-controls')).removeClass('hide');*/
+      $('#'+$($event.currentTarget).attr('aria-controls')).removeClass('hide');
     };
     
     $scope.activeFirstTab = function(){
