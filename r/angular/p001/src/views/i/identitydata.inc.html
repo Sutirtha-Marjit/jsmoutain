@@ -1,13 +1,20 @@
  <!-- @Identity details:TAB CONTENT : START -->               
-                        <div class="form-group">
-                            <label for="passport">Passport</label> 
-                            <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.passport.$error.required"></span>
-                            <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.passport.$error.required"></span>
-                            <input name="passport" type="number" class="form-control" placeholder="Passport" ng-model="dataToCapture.passport" ng-required="true"/>
+                        <div class="checkbox">
+                            <label for="passportStatus">I have Passport</label> &nbsp;
+                            <input type="radio" name="passportStatus" value="yes" ng-model="dataToCapture.hasPassport"/>  
+                            <label for="passportStatus">I don't have Passport</label> &nbsp;
+                            <input type="radio" name="passportStatus" value="no" ng-model="dataToCapture.hasPassport" checked/>       
                         </div>
-                       <div class="form-group">
-                           <label for="passport">Passport validity</label>
-                           <input maxlength="10" name="passportValidity" type="text" class="form-control" placeholder="{{dateFormatString}}" data-prop="date"/>                           
+                        <div ng-show="dataToCapture.hasPassport!==undefined && dataToCapture.hasPassport!==null && dataToCapture.hasPassport!=='no'">
+                            <div class="form-group">
+                                <label for="passport">Passport Number</label> 
+                                <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.passport.$dirty && employeeRegistration.passport.$error.required"></span>
+                                <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.passport.$error.required"></span>
+                                <input name="passport" type="number" class="form-control" placeholder="Passport" ng-model="dataToCapture.passportNo" ng-required="true"/>
+                            </div>
+                           <div class="form-group">
+                               <label for="passport">Passport validity</label>
+                               <input maxlength="10" name="passportValidity" type="text" class="form-control" placeholder="{{dateFormatString}}" data-prop="date"/>                           
+                           </div>
                        </div>
-                       
                    <!-- @Identity details:TAB CONTENT : END -->

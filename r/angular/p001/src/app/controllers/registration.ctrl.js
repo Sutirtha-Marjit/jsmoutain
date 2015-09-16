@@ -7,11 +7,13 @@ var registrationCtrl = function($scope, $http) {
     };
     $scope.dateFormatString = "MM/DD/YYYY";
     $scope.dataToCapture = {
+        sexOfEmployee:'Not to mention',
         name: null,
         surname: null,
         dob: null,
         bloodGroup: null,
-        projects: []
+        projects: [],
+        hasPassport:'no'
     };
 
     $scope.currentProject = {};
@@ -138,14 +140,15 @@ var registrationCtrl = function($scope, $http) {
     };
 
     $scope.renderTabbedPane = function($event) {
-      $event.preventDefault();  
+     /*
+     $event.preventDefault();  
       $scope.sectionHeadingRegistration =  $($event.currentTarget).text(); 
       $('*[role="tabpanel"]').addClass('hide');
-      $('#'+$($event.currentTarget).attr('aria-controls')).removeClass('hide');
+      $('#'+$($event.currentTarget).attr('aria-controls')).removeClass('hide');*/
     };
     
     $scope.activeFirstTab = function(){
-       // $('li[role="presentation"]:first a').trigger('click');
+              
     };
 
     $scope.loadFormData();

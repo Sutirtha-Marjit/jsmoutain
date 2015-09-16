@@ -2,32 +2,30 @@
 <div class="checkbox">                    
 	 <label for="sexOfEmployee"><input type="radio" name="sexOfEmployee" value="Male" ng-model="dataToCapture.sex" /> Male</label>
 	 <label for="sexOfEmployee"><input type="radio" name="sexOfEmployee" value="Female" ng-model="dataToCapture.sex"/> Female</label>
-	 <label for="sexOfEmployee"><input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex" /> Not to mention</label>
+	 <label for="sexOfEmployee"><input type="radio" name="sexOfEmployee" value="Not to mention" ng-model="dataToCapture.sex" checked//> Not to mention</label>
 </div>
 <div class="form-group">
-	 <label  for="nameOfEmployee">Name</label>
-	 <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.nameOfEmployee.$error.required"></span>
+	 <label  for="nameOfEmployee" class="text-primary">Name</label>
+	 <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.nameOfEmployee.$dirty && employeeRegistration.nameOfEmployee.$error.required"></span>
 	 <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.nameOfEmployee.$error.required"></span>
 	 <input name="nameOfEmployee" type="text" class="form-control" placeholder="Name" ng-model="dataToCapture.name"  ng-required="true"/>                     
 </div>
 <div class="form-group">
-	 <label for="surnameOfEmployee">Surname</label>
-	 <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.surnameOfEmployee.$error.required"></span>
+	 <label for="surnameOfEmployee" class="text-primary">Surname</label>
+	 <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.surnameOfEmployee.$dirty && employeeRegistration.surnameOfEmployee.$error.required"></span>
 	 <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.surnameOfEmployee.$error.required"></span>
 	 <input name="surnameOfEmployee" type="text" class="form-control" placeholder="Surname" ng-model="dataToCapture.surname" ng-required="true"/>
 </div>
 <div class="form-group">
-	 <label for="DOBOfEmployee">Date of birth</label>
-	 <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.DOBOfEmployee.$error.required"></span>
+	 <label for="DOBOfEmployee" class="text-primary">Date of birth</label>
+	 <span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.DOBOfEmployee.$dirty && employeeRegistration.DOBOfEmployee.$error.required"></span>
 	 <span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.DOBOfEmployee.$error.required"></span>
 	 <input maxlength="10" name="DOBOfEmployee" type="Date" class="form-control" placeholder="{{dateFormatString}}" data-prop="date" ng-model="dataToCapture.dob" ng-required="true" ng-date-required="true"/>
 </div>
 
 <div class="form-group">
-	<label for="bloodGroupOfEmployee">Blood Group</label>
-	<span class="text-danger glyphicon glyphicon-asterisk" ng-show="employeeRegistration.bGroupOfEmployee.$error.required"></span>
-	<span class="text-success glyphicon glyphicon-ok" ng-show="!employeeRegistration.bGroupOfEmployee.$error.required"></span>
-	<select name="bGroupOfEmployee" class="form-control" ng-model="dataToCapture.bloodGroup" ng-required="true">
+	<label for="bloodGroupOfEmployee">Blood Group</label>	
+	<select name="bGroupOfEmployee" class="form-control" ng-model="dataToCapture.bloodGroup">
 		<option ng-repeat="bl in formOptions.medical.bloodGroups" value="{{bl}}">{{bl}}</option>                        
 	</select>
 </div>              
