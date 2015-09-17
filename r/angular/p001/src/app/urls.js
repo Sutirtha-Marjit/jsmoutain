@@ -1,5 +1,5 @@
 var SOURCES={
-test: "properties/test.json",
+test: "views/properties/test.json",
 registrationFormData : "app.html",
-countries: "properties/countries.json"
+countries: "views/properties/countries.json"
 }
