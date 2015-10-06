@@ -56,6 +56,7 @@
                         <label for="briefDescription">Detail Description</label> 
                         <textarea ng-model="currentProject.detailDescription" name="detailDescription" class="form-control" placeholder="Detail Description"></textarea>
                     </div>
+                    <p ng-show="projectForm.projectName.$error.required || projectForm.briefDescription.$error.required" class="text-danger">Name and description of a project are mandatory.</p>
                     <div class="form-group" ng-show="!projectForm.briefDescription.$error.required && !projectForm.projectName.$error.required ">
                         <a ng-click="appendANewProject()" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span> Save project</a>
                         <a ng-click="cancelHandler()" class="btn btn-default">Cancel</a>
@@ -75,7 +76,9 @@
                         <input ng-required="true" ng-model="currentEditableProject.projectName" name="projectName" type="text" class="form-control" placeholder="Project Name">                   
                     </div>
                     <div class="form-group">
-                        <label for="briefDescription">Brief Description</label> 
+                        <label for="briefDescription">Brief Description</label>
+                        <span class="text-danger glyphicon glyphicon-asterisk" ng-show="projectEditForm.briefDescription.$dirty && projectEditForm.briefDescription.$error.required"></span>
+                        <span class="text-success glyphicon glyphicon-ok" ng-show="!projectEditForm.briefDescription.$error.required"></span>        
                         <input ng-required="true" ng-model="currentEditableProject.briefDescription" name="briefDescription" type="text" class="form-control" placeholder="Brief Description">                   
                     </div>
                     <div class="form-group">
@@ -86,7 +89,8 @@
                         <label for="briefDescription">Detail Description</label> 
                         <textarea ng-model="currentEditableProject.detailDescription" name="detailDescription" class="form-control" placeholder="Detail Description"></textarea>
                     </div>
-                    <div class="form-group">
+                    <p class="text-danger" ng-show="projectEditForm.projectName.$error.required || projectEditForm.briefDescription.$error.required">Name and description of a project cannot be empty! Please fill it</p>
+                    <div class="form-group" ng-show="!projectEditForm.projectName.$error.required && !projectEditForm.briefDescription.$error.required">
                         <a ng-click="editCompleteHandler()" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span> Update Project</a>
                         <a ng-click="cancelHandler()" class="btn btn-default">Cancel</a>
                     </div>
