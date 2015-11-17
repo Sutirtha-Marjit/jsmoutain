@@ -1,7 +1,0 @@
-*[data-prop^='tabContent']{
-display:none;
-}
-
-*[data-prop^='tabContent']:nth-child(1){
-display:block;
-}

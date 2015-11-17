@@ -1,9 +1,0 @@
-/*bootstrap.override.css*/
-body ,.form-control,.btn{
-    font-family:Arial;
-    font-size:12px;
-}
-
-.clear{
-    clear:both;
-}
