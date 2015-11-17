@@ -1,0 +1,193 @@
+@import url("bootstrap.override.css");
+/*ALL CUSTOM CSS*/
+nav{
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index:9999;
+    width:100%;
+    box-shadow:1px 1px 7px 0px rgba(50, 50, 50, 0.56);
+    opacity:0.90;
+}
+
+.sectionHeadingRegistration{
+margin-bottom:0px;
+}
+
+.shortenHR{
+margin:10px 0 10px 0;
+}
+
+.topNavW{
+    background: linear-gradient(to bottom, #ffffff 0%,#e8e8e8 100%);
+    border-bottom:1px solid #EFEFEF;    
+}
+
+.appBodyContent{
+    margin:83px 0 0 0;
+}
+
+.topNavW>.btn-group{
+    float:right;
+}
+
+.bgBlack{
+border-bottom:1px solid #EFEFEF;
+background: linear-gradient(to bottom, #ffffff 0%,#FCFCFC 100%);
+}
+
+
+
+h3.masterHeading{
+margin:10px 0;
+}
+
+.main-nav-container{
+padding-top:25px;
+}
+
+.borderBottom{
+border:1px solid #ccc;
+}
+
+.noLeftPD{
+  padding-left:0; 
+}
+
+.noTopPD{
+  padding-top:0; 
+}
+
+.noTopMR{
+  margin-top:0; 
+}
+
+.noBottomMR{
+  margin-bottom:0; 
+}
+
+.appPT{
+padding-top:10px;
+}
+
+.appPT .btn-group{
+float:right;
+}
+
+.appPB{
+padding-bottom:10px;
+}
+
+.appPL{
+padding-left:10px;
+}
+
+.appPR{
+padding-right:10px;
+}
+
+.boxCommon{
+border:2px solid #ccc;
+}
+
+.smallLevelText{
+font-size:12px;    
+}
+
+h4.smallLevelText{
+font-weight:bold;
+font-size:12px;    
+}
+
+
+a:link,a.visited,a:hover{
+  outline:none !important;  
+}
+
+div.checkbox label:first-child{
+    padding-left:0;
+}
+
+.skillPool{
+position:relative;
+padding:0px;
+margin:0px;    
+}
+
+.skillPool .skillBox{
+float:left;
+padding:10px 10px 0 0;    
+}
+
+.inProgressModel{
+display:none; 
+position:fixed;
+top:0;
+left:0;    
+width:100%;
+height:100%;
+}
+
+.inProgressModel .overlay{
+background:black;
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+opacity:0.5;   
+z-index:97; 
+}
+
+@-moz-keyframes rotate {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(720deg);}
+}
+
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(720deg);}
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(720deg);}
+}
+
+.round{
+   
+   position:absolute;  
+   width:50px;
+   height:50px;
+   border-radius:700px;
+   
+   top:50%;
+   left:50%;
+   z-index:99; 
+  -webkit-box-shadow: 0px 2px 1px 0px rgba(50, 50, 50, 0.36);
+  -moz-box-shadow:    0px 2px 1px 0px rgba(50, 50, 50, 0.36);
+  box-shadow:         0px 2px 1px 0px rgba(50, 50, 50, 0.36); 
+  background: linear-gradient(to bottom, #f0f9ff 0%,#cbebff 47%,#a1dbff 100%);
+  border:4px solid #a1dbff;  
+  
+   -webkit-animation-name: rotate; 
+    -webkit-animation-duration: 1s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 1s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-name: rotate; 
+    animation-duration: 1s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    
+}
+.round>span{
+  font-size:24px;
+  display:block;
+  margin-left:10px; 
+  margin-top:9px;  
+  color:white;
+}
