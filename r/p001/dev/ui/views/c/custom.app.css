@@ -66,8 +66,24 @@ border:1px solid #ccc;
   margin-bottom:0; 
 }
 
+.roundedCorner{
+    border-radius:8px;
+}
+
+.appPAll{
+padding:10px;
+}
+
+.appPAll20{
+padding:20px;
+}
+
 .appPT{
 padding-top:10px;
+}
+
+.appMT{
+margin-top:10px;
 }
 
 .appPT .btn-group{
@@ -99,6 +115,36 @@ font-weight:bold;
 font-size:12px;    
 }
 
+.clickable{
+  cursor:pointer;
+}
+
+.bs-callout {
+    padding: 20px;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    opacity:0.6;
+}
+
+.bs-callout:hover{
+  opacity:1;  
+} 
+
+.bs-callout-selected {
+    border-color: #3e8f3e;
+   opacity:1;
+}
+
+.bs-callout-selected h4,.bs-callout-selected  p{
+   color: #3e8f3e;
+}
+
+.userTypeWrapper{
+    -webkit-box-shadow: 0px 3px 2px 0px rgba(50, 50, 50, 0.25);
+-moz-box-shadow:    0px 3px 2px 0px rgba(50, 50, 50, 0.25);
+box-shadow:         0px 3px 2px 0px rgba(50, 50, 50, 0.25);
+
+}
 
 a:link,a.visited,a:hover{
   outline:none !important;  

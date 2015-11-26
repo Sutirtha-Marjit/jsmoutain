@@ -5,13 +5,13 @@ module.exports = {
 	},
 	route:{
 		root:'/',
-		info:'rest/info',
-		help:'rest/help',
-		auth:'rest/authenticate/',
-		projects:'rest/projects',
-		resources:'rest/resources',
-		projects:'rest/projects',
-		skills:'rest/skills',		
+		info:'/rest/info',
+		help:'/rest/help',
+		auth:'/rest/authenticate/',
+		projects:'/rest/projects',
+		resources:'/rest/resources',
+		projects:'/rest/projects',
+		skills:'/rest/skills',		
 		},
 	app:{}
 };
