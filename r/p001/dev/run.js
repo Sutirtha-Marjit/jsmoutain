@@ -8,6 +8,7 @@ var express = require('express');
 var requestMapper = require('./util/requestmapper');
 //import : @end
 
+
 //controller :@begin
 var ctrl={};
 var ctrlroot = './util/controller/';
@@ -29,7 +30,6 @@ var shareableSettings={
 var reqMapResult = requestMapper(shareableSettings,{});
 app.listen(c.server.port,function(){
 console.log('Server is running at '+c.server.port);
-
 app.use('/app',express.static('ui'));
 
 });

@@ -66,7 +66,12 @@ var authenticateCtrl = function ($scope, $http) {
 	};
 
 	$scope.processAuthenticate = function () {
-		alert('Posting is canceled due to impediments in $http.post');
+		//alert('Posting is canceled due to impediments in $http.post');
+        $http.post('http://localhost:4500/rest/authenticate/',{test:'welcome'}).then(function(){
+            console.log('works');
+        })
+            
+
 	};
 };
 
