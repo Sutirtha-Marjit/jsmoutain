@@ -13,6 +13,12 @@
             The term MEAN stack refers to a collection of JavaScript based technologies used to develop web applications. MEAN is an acronym for MongoDB, ExpressJS, AngularJS and Node.js.<br/>From client to server to database, MEAN is full stack JavaScript.</p>
             
             <a href="http://mean.io" target="_blank">More details</a>
+			<hr/>
+			<div>				
+				<a class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> New user? Register now!</a>
+				<br/><br/>
+				<p>If you are not registered here. Please get registered first here.</p>
+			</div>
         </div>
         
         <div id="userTypeSelectionZone" class="col-md-4 noLeftPD">
@@ -27,12 +33,13 @@
            </div>
         </div>    
 
-        <div class="col-md-4 noLeftPD" ng-show="selectedUserType!=null">
-        <span></span>
+        <div class="col-md-4 noLeftPD" ng-show="selectedUserType!=null">       
           <h4 class="{{user[selectedUserType].style.heading}}">{{"Signin for "+user[selectedUserType].text.toLowerCase()}}</h4>
-            <div class="{{user[selectedUserType].style.loginBg}} appMT appPAll20 roundedCorner">
+            <div class="{{user[selectedUserType].style.loginBg}} appMT appPAll20 roundedCorner loginWrapper">
             <h4 class="{{user[selectedUserType].style.heading}}"><span class="glyphicon glyphicon-{{user[selectedUserType].icon}}"></span> Signin</h4>
-            <form id="login" ng-submit="processAuthenticate()">
+            
+			<!-- Login form : Start-->
+			<form id="login" ng-submit="processAuthenticate()">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" placeholder="username" ng-model="auth.data.username"/>
@@ -47,6 +54,8 @@
                     <button ng-show="auth.data.username.length==0 || auth.data.password==0" class="btn btn-default" style="opacity:0.2;" disabled>Signin</button>
                 </div>
               </form> 
+			  <!-- Login form : End-->
+			  
               </div> 
         </div>
 
