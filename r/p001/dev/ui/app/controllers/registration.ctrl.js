@@ -1,7 +1,8 @@
 var registrationCtrl = function($scope, $http) {
     
-    $scope.sectionHeadingRegistration = "Loading";
-    $scope.moduleHeading = "Employee registration";
+    $scope.moduleHeading = "Registration";
+    $scope.step = 0;
+    $scope.stepArray = [true];
     
 
 };
