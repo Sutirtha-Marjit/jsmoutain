@@ -9,5 +9,6 @@ module.exports = function(shareableSettings,config){
     
     app.get(shareableSettings.c.route.root,shareableSettings.ctrl.rootController);
     app.post(shareableSettings.c.route.auth,shareableSettings.ctrl.authenticateController);
+    app.post(shareableSettings.c.route.info,shareableSettings.ctrl.infoController);
     
 };

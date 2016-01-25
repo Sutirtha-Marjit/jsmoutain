@@ -12,6 +12,7 @@
   "author": "sutirtha.social.marjit@gmail.com",
   "license": "ISC",
   "dependencies":{
-    "express":"*" 
+    "express":"*" ,
+    "body-parser":"*"
   }
 }

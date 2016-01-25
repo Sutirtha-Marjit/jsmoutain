@@ -66,12 +66,11 @@ var authenticateCtrl = function ($scope, $http) {
 	};
 
 	$scope.processAuthenticate = function () {
-		//alert('Posting is canceled due to impediments in $http.post');
-        $http.post('http://localhost:4500/rest/authenticate/',{test:'welcome'}).then(function(){
-            console.log('works');
-        })
-            
-
+		var authenticationPath = 'http://localhost:4500/rest/authenticate';
+        //var testPath = 'http://localhost:4500/rest/exp';
+        $http.post(authenticationPath, $scope.auth).then(function (response) {
+			console.log(response.data);
+		});
 	};
 };
 
