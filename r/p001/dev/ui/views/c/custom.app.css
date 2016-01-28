@@ -244,3 +244,12 @@ z-index:97;
   margin-top:9px;  
   color:white;
 }
+
+
+form.customAnimatedForm div.fieldErrorBox.ng-hide{
+	opacity:0;
+}
+
+form.customAnimatedForm div.fieldErrorBox{
+	
+}

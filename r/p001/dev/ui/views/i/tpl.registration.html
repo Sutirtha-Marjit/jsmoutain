@@ -1,38 +1,49 @@
 <div class="row" ng-controller="registrationCtrl">
     <div class="container-fluid">
-        <h3>{{moduleHeading}}</h3>
+	    <h3>{{moduleHeading}}</h3>          
         <hr/>
-        <h2>{{stepArray.length}}</h2>
-        <form class="form-horizontal">
+        <h4 ng-show="stepArray['pointedTo']!==undefined"><span class="label label-default">Step {{stepArray['pointedTo']+1}}</span></h4>
+        <form name="registrationForm" class="form-horizontal customAnimatedForm">
         <div class="row">
-            <div class="col-md-4" ng-show="(stepArray.length<=1)">
-                <h4 class="text-primary"><span class="glyphicon glyphicon-cog"></span> Credentials</h4><br/>                
+            <div class="col-md-4" ng-show="(stepArray['pointedTo']==0)">
+                <h5 class="text-primary"><span class="glyphicon glyphicon-cog"></span> Credentials</h5><br/>                
                 <div class="form-group">
-                    <label for="registrationUsername" class="col-sm-2 control-label">Username</label>
+                    <label for="registrationUsername" class="col-sm-2 control-label">Username </label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="registrationUsername" placeholder="Your username"/>
+                      <input ng-model="registrationData.data.username" ng-required="true" ng-change="fieldValidate.username.action()" type="text" class="form-control" id="registrationUsername" name="registrationUsername" placeholder="Your username"/>
                     </div>
                  </div>
+                 <div class="form-group text-danger fieldErrorBox" ng-show="registrationForm.registrationUsername.$touched && registrationForm.registrationUsername.$error.required">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.username.blank}}</label>				  
+                 </div>				 
+				 <div class="form-group text-danger fieldErrorBox" ng-show="!fieldValidate.username.valid && registrationForm.registrationUsername.$dirty">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.username.invalid}}</label>				  
+                 </div>
+
                  <div class="form-group">
-                    <label for="registrationUsername" class="col-sm-2 control-label">Password</label>
+                    <label for="registrationPassword" class="col-sm-2 control-label">Password </label>
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" id="registrationUsername" placeholder="Your password"/>
+                      <input ng-model="registrationData.data.password" ng-required="true" ng-change="fieldValidate.password.action()" type="password" class="form-control" id="registrationPassword" name="registrationPassword" placeholder="Your password"/>
                     </div>
                  </div>
-                 <div class="form-group">
-                    <label for="registrationUsername" class="col-sm-2 control-label">Retype Password</label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control" id="registrationUsername" placeholder="Retype your password"/>
-                    </div>
+				 
+				<div class="form-group text-danger fieldErrorBox" ng-show="registrationForm.registrationPassword.$touched && registrationForm.registrationPassword.$error.required">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.password.blank}}</label>
                  </div>
+				 
+				 <div class="form-group text-danger fieldErrorBox" ng-show="registrationForm.registrationPassword.$dirty && !fieldValidate.password.valid">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.password.invalid}}</label>				  
+                 </div>
+				 
+                	
             </div>
             
-            <div class="col-md-4" ng-show="(stepArray.length==2 || stepArray.length==3)">
-                <h4 class="text-primary"><span class="glyphicon glyphicon-user"></span> Basic info</h4><br/>
+            <div class="col-md-4" ng-show="(stepArray['pointedTo']==1)">
+                <h5 class="text-primary"><span class="glyphicon glyphicon-user"></span> Basic info</h5><br/>
                 <div class="form-group">
                     <label for="registrationUsername" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="registrationUsername" placeholder="Your name"/>
+                      <input ng-model="registrationData.data.name" type="text" class="form-control" id="registrationName" placeholder="Your name"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -44,8 +55,8 @@
                
             </div>
             
-            <div class="col-md-4" ng-show="(stepArray.length==3)">
-                <h4 class="text-primary"><span class="glyphicon glyphicon-envelope"></span> Contacts</h4><br/>
+            <div class="col-md-4" ng-show="(stepArray['pointedTo']==2)">
+                <h5 class="text-primary"><span class="glyphicon glyphicon-envelope"></span> Contacts</h5><br/>
                  <div class="form-group">
                     <label for="registrationUsername" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
@@ -59,20 +70,44 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12" ng-show="(stepArray['pointedTo']==3)">
+               <br/>
+
+               <div class="panel panel-success">
+                  <div class="panel-heading"><h5 class="text-success"><span class="glyphicon glyphicon-eye-open"></span> Review and confirm data</h5></div>
+                  <div class="panel-body">
+                    <p>All information are about to be confirmed and saved. Please take a look before confirming.</p>
+					<ul class="list-group">
+					  <li class="list-group-item" ng-show="registrationData.data.username!==undefined">{{registrationData.data.username}}</li>
+					  <li class="list-group-item" ng-show="registrationData.data.password!==undefined">{{registrationData.data.password}}</li>					  
+					</ul>
+                  </div>
+                </div>
+
+            </div>
         </div>
         
         </form>
+		<div class="text-success" ng-show="stepValidationAction()">
+			<h4><span class="glyphicon glyphicon-ok-circle"></span> Done! click next</h4>
+		</div>
+		<div class="text-primary" ng-show="!stepValidationAction()">
+			<p><span class="glyphicon glyphicon-ok-circle"></span> System is waiting for you input. Please filled up the form </p>
+		</div>
         <hr/>
+
         <div class="row">
             <div class="col-md-4">
                 <div class="btn-group">
-                    <a class="btn btn-primary"> Previous </a>
-                    <a class="btn btn-primary"> Next </a>
+                    <button class="btn btn-primary" ng-click="stageShifter('prev')"> Previous </button>
+                    <button class="btn btn-primary" ng-click="stageShifter('next')"> Next </button>
                 </div>
             </div>
         </div>
+
     </div>    
-             
+       
 </div>
    
    
