@@ -6,7 +6,7 @@ var registrationCtrl = function ($scope, $http) {
 	$scope.stepArray['min'] = 0;	
 	$scope.stepArray['pointedTo'] = $scope.stepArray['min'];
 	//$scope.stepArray['pointedTo'] = 1;
-	$scope.stepArray['progress'] = 0;
+	$scope.stepArray['progress'] = ($scope.stepArray['pointedTo']/$scope.stepArray['max'])*100;
 
 	$scope.fieldValidate = {
 		username : {
@@ -80,6 +80,15 @@ var registrationCtrl = function ($scope, $http) {
 				}
 			}
 			
+		},
+		
+		phone : {
+			pattern : /[^0-9]/,
+			valid : false,
+			action : function(){
+				return false;
+			}
+			
 		}
 	};
 	$scope.errorMessages = {
@@ -96,6 +105,14 @@ var registrationCtrl = function ($scope, $http) {
 		},
 		surname : {
 			blank : "Surname is mandatory"
+		},
+		email : {
+			blank : "Email is mandatory",
+			invalid : "Your email is invalid"
+		},
+		phone :{
+			blank : "Phone is mandatory",
+			invalid : "Only numbers are allowed"
 		}
 	};
 	$scope.registrationData = {
@@ -109,6 +126,10 @@ var registrationCtrl = function ($scope, $http) {
 
 	var validBasicInfo = function () {
 		return ($scope.fieldValidate.name.valid && $scope.fieldValidate.surname.valid);
+	};
+	
+	var validContactInfo = function () {
+		return ($scope.fieldValidate.email.valid && $scope.fieldValidate.phone.valid);
 	}
 
 	$scope.stepValidationAction = function () {
@@ -131,23 +152,24 @@ var registrationCtrl = function ($scope, $http) {
 	};
 	
 	var evaluateProgress = function(){
-		$scope.stepArray['progress'] = (($scope.stepArray['max']+1) - $scope.stepArray['pointedTo'])/($scope.stepArray['max']+1);
-		//console.log($scope.stepArray['progress'] );
+		$scope.stepArray['progress'] = (($scope.stepArray['pointedTo'])/($scope.stepArray['max']+1))*100;		
 	}
 	
 	$scope.stageShifter = function (dir) {
-		evaluateProgress();
+		
 		switch (dir) {
 		case "next":
 			if ($scope.stepValidationAction()) {
 				if ($scope.stepArray['pointedTo'] < $scope.stepArray['max']) {
 					$scope.stepArray['pointedTo'] = $scope.stepArray['pointedTo'] + 1;
+					evaluateProgress();
 				}
 			}
 			break;
 		case "prev":
 			if ($scope.stepArray['pointedTo'] > $scope.stepArray['min']) {
 				$scope.stepArray['pointedTo'] = $scope.stepArray['pointedTo'] - 1;
+				evaluateProgress();
 			}
 			break;
 		}
