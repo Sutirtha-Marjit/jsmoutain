@@ -2,67 +2,123 @@ var registrationCtrl = function ($scope, $http) {
 	$scope.moduleHeading = "Registration";
 	$scope.step = 0;
 	$scope.stepArray = [true, true];
-	$scope.stepArray['pointedTo'] = 0;
 	$scope.stepArray['max'] = 3;
-	$scope.stepArray['min'] = 0;
+	$scope.stepArray['min'] = 0;	
+	$scope.stepArray['pointedTo'] = $scope.stepArray['min'];
+	//$scope.stepArray['pointedTo'] = 1;
+	$scope.stepArray['progress'] = 0;
+
 	$scope.fieldValidate = {
 		username : {
 			pattern : /[^0-9-A-Z]+/gi,
 			valid : false,
 			action : function () {
-				if($scope.registrationData.data.username!==undefined){
-					this.valid = ($scope.registrationData.data.username.match(this.pattern) === null)
-				}else{
-					this.valid=false;
+				if ($scope.registrationData.data.username !== undefined) {
+					if ($scope.registrationData.data.username.length > 5) {
+						this.valid = ($scope.registrationData.data.username.match(this.pattern) === null)
+					} else {
+						this.valid = false;
+					}
+
+				} else {
+					this.valid = false;
 				}
-				
-				console.log('username is valid :>'+this.valid);
+
+				//console.log('username is valid :>' + this.valid);
 			}
 		},
-		password: {
+		password : {
 			pattern : /[^0-9-A-Z]+/gi,
-			valid: false,
-			action: function(){
-				if($scope.registrationData.data.password!==undefined){
-					this.valid = ($scope.registrationData.data.password.match(this.pattern) !== null)
-				}else{
-					this.valid=false;
+			valid : false,
+			action : function () {
+				if ($scope.registrationData.data.password !== undefined) {
+					if ($scope.registrationData.data.password.length > 5) {
+						this.valid = ($scope.registrationData.data.password.match(this.pattern) !== null)
+					} else {
+						this.valid = false;
+					}
+
+				} else {
+					this.valid = false;
 				}
-				
-				console.log('password is valid :>'+this.valid);
+
+				//console.log('password is valid :>' + this.valid);
 			}
+		},
+		name : {
+			pattern : null,
+			valid : false,
+			action : function () {
+				if ($scope.registrationData.data.name !== undefined) {
+					this.valid = true;
+				} else {
+					this.valid = false;
+				}
+			}
+
+		},
+		surname : {
+			pattern : null,
+			valid : false,
+			action : function () {
+				if ($scope.registrationData.data.surname !== undefined) {
+					this.valid = true;
+				} else {
+					this.valid = false;
+				}
+			}
+
+		},
+		email : {
+			pattern : /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+			valid : false,
+			action : function(){
+				if ($scope.registrationData.data.email !== undefined) {
+					this.valid = true;
+				} else {
+					this.valid = false;
+				}
+			}
+			
 		}
 	};
 	$scope.errorMessages = {
 		username : {
 			blank : "Username cannot be blank. Please fill it properly",
-			invalid : "Username should not have any space or special character"
+			invalid : "Username should have at least 5 letters and without any space or special character"
 		},
 		password : {
 			blank : "Password cannot be blank. Please fill it properly",
-			invalid : "Atleast one special character is required for password"
+			invalid : "Password should have at least 5 letters and one special character"
+		},
+		name : {
+			blank : "Name is mandatory"
+		},
+		surname : {
+			blank : "Surname is mandatory"
 		}
 	};
 	$scope.registrationData = {
-		data : {
-			
-		}
+		data : {}
 
 	};
 	var validCredentials = function () {
-		
-		return ($scope.fieldValidate.username.valid && $scope.fieldValidate.password.valid);		 
+
+		return ($scope.fieldValidate.username.valid && $scope.fieldValidate.password.valid);
 	};
-	
+
+	var validBasicInfo = function () {
+		return ($scope.fieldValidate.name.valid && $scope.fieldValidate.surname.valid);
+	}
+
 	$scope.stepValidationAction = function () {
-		
+
 		switch ($scope.stepArray['pointedTo']) {
 		case 0:
-		    console.log(validCredentials());
 			return validCredentials();
 			break;
 		case 1:
-			//alert(1);
+			return validBasicInfo();
 			break;
 		case 2:
 			//alert(2);
@@ -71,15 +127,22 @@ var registrationCtrl = function ($scope, $http) {
 			//alert(3);
 			break;
 		}
-		
+
 	};
+	
+	var evaluateProgress = function(){
+		$scope.stepArray['progress'] = (($scope.stepArray['max']+1) - $scope.stepArray['pointedTo'])/($scope.stepArray['max']+1);
+		//console.log($scope.stepArray['progress'] );
+	}
+	
 	$scope.stageShifter = function (dir) {
+		evaluateProgress();
 		switch (dir) {
 		case "next":
-			if($scope.stepValidationAction()){
-			if ($scope.stepArray['pointedTo'] < $scope.stepArray['max']) {
-				$scope.stepArray['pointedTo'] = $scope.stepArray['pointedTo'] + 1;
-			}
+			if ($scope.stepValidationAction()) {
+				if ($scope.stepArray['pointedTo'] < $scope.stepArray['max']) {
+					$scope.stepArray['pointedTo'] = $scope.stepArray['pointedTo'] + 1;
+				}
 			}
 			break;
 		case "prev":
@@ -89,12 +152,12 @@ var registrationCtrl = function ($scope, $http) {
 			break;
 		}
 	};
-	
-	$scope.registrationInit = function(){
+
+	$scope.registrationInit = function () {
 		$scope.fieldValidate.username.action();
 		$scope.fieldValidate.password.action();
 	};
-	
+
 	$scope.registrationInit();
 };
 empDataMantSystem.controller('registrationCtrl', ['$scope', '$http', registrationCtrl]);
