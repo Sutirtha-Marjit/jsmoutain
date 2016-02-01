@@ -3,10 +3,11 @@ var registrationCtrl = function ($scope, $http) {
 	$scope.step = 0;
 	$scope.stepArray = [true, true];
 	$scope.stepArray['max'] = 3;
-	$scope.stepArray['min'] = 0;	
+	$scope.stepArray['min'] = 0;
 	$scope.stepArray['pointedTo'] = $scope.stepArray['min'];
-	//$scope.stepArray['pointedTo'] = 1;
-	$scope.stepArray['progress'] = ($scope.stepArray['pointedTo']/$scope.stepArray['max'])*100;
+	$scope.stepArray['status'] = "progress";
+	//$scope.stepArray['pointedTo'] = 3;
+	$scope.stepArray['progress'] = ($scope.stepArray['pointedTo'] / $scope.stepArray['max']) * 100;
 
 	$scope.fieldValidate = {
 		username : {
@@ -23,8 +24,6 @@ var registrationCtrl = function ($scope, $http) {
 				} else {
 					this.valid = false;
 				}
-
-				//console.log('username is valid :>' + this.valid);
 			}
 		},
 		password : {
@@ -41,8 +40,6 @@ var registrationCtrl = function ($scope, $http) {
 				} else {
 					this.valid = false;
 				}
-
-				//console.log('password is valid :>' + this.valid);
 			}
 		},
 		name : {
@@ -72,23 +69,33 @@ var registrationCtrl = function ($scope, $http) {
 		email : {
 			pattern : /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 			valid : false,
-			action : function(){
+			action : function () {
 				if ($scope.registrationData.data.email !== undefined) {
+					if ($scope.registrationData.data.email.match(this.pattern) !== null) {
+						this.valid = true;
+					} else {
+						this.valid = false;
+					}
+
+				} else {
+					this.valid = false;
+				}
+			}
+
+		},
+
+		phone : {
+			pattern : /[^0-9]/,
+			valid : false,
+			action : function () {
+				var numstr = $scope.registrationData.data.phone + '';
+				if (numstr.match(this.pattern) === null) {
 					this.valid = true;
 				} else {
 					this.valid = false;
 				}
 			}
-			
-		},
-		
-		phone : {
-			pattern : /[^0-9]/,
-			valid : false,
-			action : function(){
-				return false;
-			}
-			
+
 		}
 	};
 	$scope.errorMessages = {
@@ -110,7 +117,7 @@ var registrationCtrl = function ($scope, $http) {
 			blank : "Email is mandatory",
 			invalid : "Your email is invalid"
 		},
-		phone :{
+		phone : {
 			blank : "Phone is mandatory",
 			invalid : "Only numbers are allowed"
 		}
@@ -127,7 +134,7 @@ var registrationCtrl = function ($scope, $http) {
 	var validBasicInfo = function () {
 		return ($scope.fieldValidate.name.valid && $scope.fieldValidate.surname.valid);
 	};
-	
+
 	var validContactInfo = function () {
 		return ($scope.fieldValidate.email.valid && $scope.fieldValidate.phone.valid);
 	}
@@ -142,7 +149,7 @@ var registrationCtrl = function ($scope, $http) {
 			return validBasicInfo();
 			break;
 		case 2:
-			//alert(2);
+			return validContactInfo();
 			break;
 		case 3:
 			//alert(3);
@@ -150,13 +157,19 @@ var registrationCtrl = function ($scope, $http) {
 		}
 
 	};
-	
-	var evaluateProgress = function(){
-		$scope.stepArray['progress'] = (($scope.stepArray['pointedTo'])/($scope.stepArray['max']+1))*100;		
+
+	var evaluateProgress = function () {
+
+		$scope.stepArray['progress'] = (($scope.stepArray['pointedTo'] + 1) / ($scope.stepArray['max'] + 1)) * 100;
 	}
-	
+
+	$scope.quickStageShifter = function (stageNum) {
+		$scope.stepArray['pointedTo'] = stageNum;
+		evaluateProgress();
+	}
+
 	$scope.stageShifter = function (dir) {
-		
+
 		switch (dir) {
 		case "next":
 			if ($scope.stepValidationAction()) {
@@ -174,12 +187,26 @@ var registrationCtrl = function ($scope, $http) {
 			break;
 		}
 	};
+	
+	$scope.finalDataPost = function(){
+		
+		$http.post('http://localhost:4500/rest/registration',$scope.registrationData.data).success(function(data, status){
+			
+			if(data.registrationStatus==="success"){
+				$scope.stepArray['status'] = "done";
+			}
+			
+		});
+		
+	};
 
 	$scope.registrationInit = function () {
 		$scope.fieldValidate.username.action();
 		$scope.fieldValidate.password.action();
+		evaluateProgress();
 	};
 
 	$scope.registrationInit();
+
 };
 empDataMantSystem.controller('registrationCtrl', ['$scope', '$http', registrationCtrl]);

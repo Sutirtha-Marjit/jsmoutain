@@ -6,11 +6,12 @@
 		"port": "4500"
 	},
 	"route": {
-		"root": "/",
+		"root": "/",		
 		"info": "/rest/info",
 		"help": "/rest/help",
 		"auth": "/rest/authenticate",
 		"projects": "/rest/projects",
+		"registration" : "/rest/registration",
 		"resources": "/rest/resources",
 		"skills": "/rest/skills"
 	},

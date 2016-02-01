@@ -7,6 +7,8 @@
 		
         <form name="registrationForm" class="form-horizontal customAnimatedForm">
         <div class="row">
+			
+			<!-- Credentials: BOX STARTED -->
             <div class="col-md-4" ng-show="(stepArray['pointedTo']==0)">
                 <h5 class="text-primary"><span class="glyphicon glyphicon-cog"></span> Credentials</h5><br/>                
                 <div class="form-group">
@@ -39,7 +41,10 @@
 				 
                 	
             </div>
-            
+			<!-- Credentials: BOX END -->
+			
+			
+            <!-- Basic info: BOX STARTED -->
             <div class="col-md-4" ng-show="(stepArray['pointedTo']==1)">
                 <h5 class="text-primary"><span class="glyphicon glyphicon-user"></span> Basic info</h5><br/>
                 <div class="form-group">
@@ -64,44 +69,73 @@
                  </div>
                
             </div>
+			<!-- Basic info: BOX END -->
+			
             
+			
+			<!-- Contacts: BOX STARTED -->
             <div class="col-md-4" ng-show="(stepArray['pointedTo']==2)">
                 <h5 class="text-primary"><span class="glyphicon glyphicon-envelope"></span> Contacts</h5><br/>
                  <div class="form-group">
-                    <label for="registrationUsername" class="col-sm-2 control-label">Email</label>
+                    <label for="registrationEmail" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="Email" class="form-control" id="registrationUsername" placeholder="Your Email"/>
+                      <input type="Email" ng-model="registrationData.data.email" ng-required="true" ng-change="fieldValidate.email.action()" class="form-control" name="registrationEmail" id="registrationEmail" placeholder="Your Email"/>
                     </div>
                 </div>
+				<div class="form-group text-danger fieldErrorBox" ng-show="registrationForm.registrationEmail.$touched && registrationForm.registrationEmail.$error.required">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.email.blank}}</label>
+                 </div>
+				 <div class="form-group text-danger fieldErrorBox" ng-show="registrationForm.registrationEmail.$dirty && !fieldValidate.email.valid">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.email.invalid}}</label>
+                 </div>
+				
                 <div class="form-group">
                     <label for="registrationUsername" class="col-sm-2 control-label">Phone</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="registrationUsername" placeholder="Your Contact number"/>
+                      <input ng-model="registrationData.data.phone" ng-required="true" ng-change="fieldValidate.phone.action()" type="number" class="form-control" name="registrationPhone" id="registrationPhone" placeholder="Your Contact number"/>
                     </div>
                 </div>
+				
+				<div class="form-group text-danger fieldErrorBox" ng-show="registrationForm.registrationPhone.$touched && registrationForm.registrationPhone.$error.required">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.phone.blank}}</label>
+                 </div>
+				 
+				 <div class="form-group text-danger fieldErrorBox" ng-show="registrationForm.registrationPhone.$dirty && !fieldValidate.phone.valid">
+                    <label class="col-sm-12 control-label"><span class="glyphicon glyphicon-remove-circle"></span> {{errorMessages.phone.invalid}}</label>
+                 </div>
             </div>
+			<!-- Contacts: BOX END -->
 
+			
+			<!-- Review: BOX STARTED -->
             <div class="col-md-12" ng-show="(stepArray['pointedTo']==3)">
                <br/>
-
-               <div class="panel panel-success">
-                  <div class="panel-heading"><h5 class="text-success"><span class="glyphicon glyphicon-eye-open"></span> Review and confirm data</h5></div>
-                  <div class="panel-body">
-                    <p>All information are about to be confirmed and saved. Please take a look before confirming.</p>
-					<ul class="list-group">
-					  <li class="list-group-item" ng-show="registrationData.data.username!==undefined">{{registrationData.data.username}}</li>
-					  <li class="list-group-item" ng-show="registrationData.data.password!==undefined">{{registrationData.data.password}}</li>					  
-					</ul>
-                  </div>
-                </div>
+			   <h3 class="text-primary">{{registrationData.data.name}} {{registrationData.data.surname}} <a ng-click="quickStageShifter(1)" title="edit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></h3>	
+			   <hr class="text-primary">
+			   
+               <table class="table table-striped">
+			    <tr>
+					<td>Email</td><td>{{registrationData.data.email}}</td><td><a ng-click="quickStageShifter(2)" title="edit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                </tr>
+				<tr>
+					<td>Phone</td><td>{{registrationData.data.phone}}</td><td><a ng-click="quickStageShifter(2)" title="edit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                </tr>				
+				<tr>
+					<td>Username</td><td>{{registrationData.data.username}}</td><td><a ng-click="quickStageShifter(0)" title="edit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                </tr>
+				<tr>
+					<td>Password</td><td>{{registrationData.data.password}}</td><td><a ng-click="quickStageShifter(0)" title="edit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                </tr>				
+			   </table>
 
             </div>
+			<!-- Review: BOX END -->		
         </div>
         
         </form>
 		
 		<div class="text-success" ng-show="stepValidationAction()">
-			<h4><span class="glyphicon glyphicon-ok-circle"></span> Done! click next</h4>
+			<p><span class="glyphicon glyphicon-ok-circle"></span> Done! click next</p>
 		</div>
 		
 		<div class="text-primary" ng-show="!stepValidationAction() && stepArray['pointedTo']!==3">
@@ -116,15 +150,19 @@
 			</div>
 		</div>	
 		
-        <div class="row">
+        <div class="row" ng-show="(stepArray['pointedTo']<3)">
             <div class="col-md-4">
                 <div class="btn-group">
                     <button class="btn btn-primary" ng-click="stageShifter('prev')"> Previous </button>
                     <button class="btn btn-primary" ng-click="stageShifter('next')"> Next </button>
                 </div>
             </div>
-        </div>
-
+        </div>	
+	    <div class="row" ng-show="(stepArray['pointedTo']==stepArray['max'] && stepArray['status']==='progress')">
+			<div class="col-md-12">
+				<a ng-click="finalDataPost()" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span> Confirm registration!</a>
+			</div>	
+		</div>
     </div>           
 </div>
    

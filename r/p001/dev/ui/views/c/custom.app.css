@@ -253,3 +253,23 @@ form.customAnimatedForm div.fieldErrorBox.ng-hide{
 form.customAnimatedForm div.fieldErrorBox{
 	
 }
+
+
+
+
+
+@media (min-width: 320px) and (max-width: 414px) {
+	nav{
+		position:relative;
+	}
+	
+	.appBodyContent{
+		margin:0px;
+	}
+	
+	.topNavW div.btn-group a.btn{
+		width:100%;
+		border-bottom:1px solid #ccc;
+	}
+	
+}
