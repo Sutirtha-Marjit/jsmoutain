@@ -11,5 +11,7 @@ module.exports = function(shareableSettings,config){
     app.post(shareableSettings.c.route.auth,shareableSettings.ctrl.authenticateController);
     app.post(shareableSettings.c.route.info,shareableSettings.ctrl.infoController);
 	app.post(shareableSettings.c.route.registration,shareableSettings.ctrl.registrationController);
+    app.get(shareableSettings.c.route.dbtest,shareableSettings.ctrl.dbtestController);
+    
     
 };

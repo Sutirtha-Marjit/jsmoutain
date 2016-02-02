@@ -15,6 +15,7 @@
 	ctrl.authenticateController = require(ctrlroot + 'authenticate.ctrlr.js');
 	ctrl.registrationController = require(ctrlroot + 'registration.ctrlr.js');
 	ctrl.infoController = require(ctrlroot + 'info.ctrlr.js');
+    ctrl.dbtestController = require(ctrlroot+ 'dbtest.ctrlr.js');
 	//controller :@end
 
 	var app = express();

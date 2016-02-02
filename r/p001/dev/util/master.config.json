@@ -13,7 +13,8 @@
 		"projects": "/rest/projects",
 		"registration" : "/rest/registration",
 		"resources": "/rest/resources",
-		"skills": "/rest/skills"
+		"skills": "/rest/skills",
+        "dbtest": "/rest/dbtest"
 	},
 	"app": {
 		
