@@ -123,7 +123,7 @@ var registrationCtrl = function ($scope, $http) {
 		}
 	};
 	$scope.registrationData = {
-		data : {}
+		data : {sex:'m'}
 
 	};
 	var validCredentials = function () {

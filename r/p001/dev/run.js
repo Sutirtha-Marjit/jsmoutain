@@ -5,7 +5,7 @@
 	var c = require('./util/master.config');
 	var express = require('express');
 	var bodyParser = require('body-parser');
-	var requestMapper = require('./util/requestmapper');
+    var requestMapper = require('./util/requestmapper');
 	//import : @end
 
 	//controller :@begin
@@ -16,6 +16,7 @@
 	ctrl.registrationController = require(ctrlroot + 'registration.ctrlr.js');
 	ctrl.infoController = require(ctrlroot + 'info.ctrlr.js');
     ctrl.dbtestController = require(ctrlroot+ 'dbtest.ctrlr.js');
+    console.log(typeof ctrl.dbtestController);
 	//controller :@end
 
 	var app = express();
@@ -24,7 +25,7 @@
 	var shareableSettings = {
 		express : express,
 		app : app,
-		c : c,
+        c : c,
 		ctrl : ctrl
 	};
 	//shareableSettings : @end
