@@ -1,4 +1,4 @@
-module.exports = function(req,res){
+module.exports = function(req,res,shareableObject){
     
     var userType = req.body.type;
     var obj = {

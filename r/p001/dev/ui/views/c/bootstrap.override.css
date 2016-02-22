@@ -4,6 +4,15 @@ body ,.form-control,.btn{
     font-size:12px;
 }
 
+body{
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
 .clear{
     clear:both;
+}
+
+.findResourcesSearchBox{
+        margin-top: 20px;
+    margin-bottom: 10px;
 }

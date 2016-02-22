@@ -11,7 +11,7 @@ module.exports = function(req,res){
     	}
     };
     res.header("Access-Control-Allow-Origin", "*");
-    res.header('Content-Type','application/json');
-	res.send(JSON.stringify(obj));
+    //res.header('Content-Type','application/json');
+	res.json(obj);
 
 };

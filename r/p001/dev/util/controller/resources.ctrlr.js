@@ -1,5 +1,5 @@
 module.exports = function(req,res,shareableObject){
-	
+    
     var mongoose = shareableObject.mongoose;
     var Schema =  mongoose.Schema;
      
@@ -14,16 +14,10 @@ module.exports = function(req,res,shareableObject){
         sex: String
     });
     
-    var ResourceStack = mongoose.model('ResourceStack',resourceRegistrationSchema);
-    var currentResource = new ResourceStack(req.body);
-    
-    currentResource.save(function(error){
-        console.log(error);
+    var ResourceStack = mongoose.model('ASAQWYUAYS',resourceRegistrationSchema);
+    ResourceStack.find({},function(error,docs){
+        
+        res.send(docs);
+        
     });
-    
-    var obj = {"success":"true"};
-    
-	res.header("Access-Control-Allow-Origin", "*");
-    res.header('Content-Type','application/json');
-	res.send(obj);
 };

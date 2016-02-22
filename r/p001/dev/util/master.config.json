@@ -1,6 +1,6 @@
 {
 	"db": {
-		
+		"location":"mongodb://localhost/resourcemanagement"
 	},
 	"server": {
 		"port": "4500"

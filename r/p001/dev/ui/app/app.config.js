@@ -4,6 +4,7 @@ empDataMantSystem.routerList = [
 	['/resourcedetail','views/i/tpl.resourcedetail.html',null],
 	['/projects','views/i/tpl.project.html',null],
 	['/test','views/i/tpl.test.html',null],
+    ['/findresources','views/i/tpl.findresources.html',null],
 	['/z$90qtxcv0807dxqtasf','views/i/tpl.settings.html',null],
 	['/welcome','views/i/tpl.welcome.html',null]
 ];
@@ -22,6 +23,7 @@ empDataMantSystem.config(function($routeProvider){
         controller:empDataMantSystem.routerList[i][2]
 		});	
 	}
+    
     $routeProvider.otherwise(defaultConfig[0],{
         templateUrl:defaultConfig[1],
         controller:defaultConfig[2]

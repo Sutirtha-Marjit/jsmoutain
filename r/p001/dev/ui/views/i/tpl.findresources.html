@@ -1,0 +1,48 @@
+<div ng-controller="resourceListingCtrl">
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-2">
+            <h3 class="text-primary">Find Resources</h3>
+        </div>
+        <div class="col-md-4 findResourcesSearchBox">
+            <form class="form-inline">
+                <div class="form-group">
+                <input type="text" class="form-control text-primary"/>               
+                </div>
+            </form>    
+        </div>
+        
+        
+    </div>
+    <hr/>
+    
+    <div class="row" ng-show="alphabeticSection">
+        <div class="btn-group" ng-repeat="n in alphabets">        
+            <a title="{{'Resources, whos name starts with '+n}}" class="btn">{{n}}</a>    
+        </div>
+        <hr/>
+    </div>
+    
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr class="text-primary">
+                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
+                </tr>
+                <tr>
+                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
+                </tr>
+                <tr>
+                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
+                </tr>
+            </tbody>
+        </table>   
+    </div>
+</div>
+</div>
