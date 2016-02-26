@@ -3,7 +3,7 @@
 		"location":"mongodb://localhost/resourcemanagement"
 	},
 	"server": {
-		"port": "4500"
+		"port": "6500"
 	},
 	"route": {
 		"root": "/",		

@@ -44,7 +44,8 @@ module.exports = function(shareableSettings,config){
         ctrl.registrationController,
         {
             mongoose : shareableSettings.mongoose,
-            dbconn:shareableSettings.dbconn
+            dbconn:shareableSettings.dbconn,
+            schemaBundle:shareableSettings.schemaBundle
         },
         'POST'
     );
@@ -56,7 +57,8 @@ module.exports = function(shareableSettings,config){
         ctrl.resourcesController,
         {
             mongoose : shareableSettings.mongoose,
-            dbconn:shareableSettings.dbconn
+            dbconn:shareableSettings.dbconn,
+            schemaBundle:shareableSettings.schemaBundle
         },
         'GET'
     );

@@ -1,5 +1,5 @@
 <div class="row" ng-controller="registrationCtrl">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-show="stepArray['status']!=='done'">
 	    <h3>{{moduleHeading}}</h3>          
         <p>This is a primary registration process to capture some minimum set of data to create your profile. Please provide all the information asked here. After successful creation of your profile you will be able to update your further details.</p>
 		<hr/>
@@ -172,7 +172,12 @@
 				<a ng-click="finalDataPost()" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span> Confirm registration!</a>
 			</div>	
 		</div>
-    </div>           
+    </div>  
+    
+    
+    <div class="container-fluid" ng-show="stepArray['status']==='done'">
+        <h1 class="text-success">You have registered sucessfully!</h1>
+    </div>
 </div>
    
    

@@ -190,9 +190,10 @@ var registrationCtrl = function ($scope, $http) {
 	
 	$scope.finalDataPost = function(){
 		
-		$http.post('http://localhost:4500/rest/registration',$scope.registrationData.data).success(function(data, status){
-			
-			if(data.registrationStatus==="success"){
+		$http.post('http://localhost:6500/rest/registration',$scope.registrationData.data).success(function(data, status){
+			console.log(data);
+			if(data.registrationStatus==="true"){
+                console.log('inside')
 				$scope.stepArray['status'] = "done";
 			}
 			

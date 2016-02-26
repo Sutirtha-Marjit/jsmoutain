@@ -6,8 +6,10 @@
 	var express = require('express');
 	var bodyParser = require('body-parser');
     var mongoose = require("mongoose");
+    var SchemaConfig = require("./util/schema.config.js");
     var requestMapper = require('./util/requestmapper');
     var baseController = require("./util/basecontroller");
+    var DBSchemaManager = require("./util/dbschemamanager"); 
 	//import : @end
 
 	//controller :@begin
@@ -29,10 +31,10 @@
 		}));
     
     //db variables @begin
-    var dbconn = mongoose.connect(c.db.location);
-    
+    var dbconn = mongoose.connect(c.db.location);    
     //db variables @end
     
+    var schemaBundle = DBSchemaManager(SchemaConfig,mongoose);
     
 	//shareableSettings : @begin
 	var shareableSettings = {
@@ -40,6 +42,7 @@
 		app : app,
         mongoose : mongoose,
         dbconn : dbconn,
+        schemaBundle : schemaBundle,
         basecontroller: baseController,
         c : c,
 		ctrl : ctrl
@@ -50,11 +53,9 @@
 	
 
 	var reqMapResult = requestMapper(shareableSettings, {});
-	app.listen(c.server.port, function () {
+	
+    app.listen(c.server.port, function () {
     console.log('Server is running at ' + c.server.port);
-
-		
-
 	});
 
 })();
