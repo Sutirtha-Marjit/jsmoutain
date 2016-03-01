@@ -1,5 +1,5 @@
 <div ng-controller="resourceListingCtrl">
-<div class="container-fluid">
+<div>
     
     <div class="row">
         <div class="col-md-2">
@@ -18,31 +18,37 @@
     <hr/>
     
     <div class="row" ng-show="alphabeticSection">
-        <div class="btn-group" ng-repeat="n in alphabets">        
-            <a title="{{'Resources, whos name starts with '+n}}" class="btn">{{n}}</a>    
-        </div>
-        <hr/>
+        <div class="container-fluid">
+            <div class="btn-group " >
+                <a class="btn btn-sm btn-success active">All</a>
+                <a id="btnCharacter{{n}}" ng-repeat="n in alphabets" ng-click="pressLetter($event)" title="{{'Resources, whos name starts with '+n}}" class="btn btn-sm btn-default">{{n}}</a>    
+            </div>        
+        </div>    
     </div>
     
+    <hr/>
+    
     <div class="row">
+        <div class="container-fluid">
         <table class="table table-striped">
             <thead>
                 <tr class="text-primary">
-                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
+                    <td></td>
+                    <td><span class="glyphicon glyphicon-user"></span> Name</td>
+                    <td><span class="glyphicon glyphicon-envelope"></span> Email</td>
+                    <td><span class="glyphicon glyphicon-earphone"></span> Contact</td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
-                </tr>
-                <tr>
-                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
-                </tr>
-                <tr>
-                    <td>id</td><td>Name</td><td>Surname</td><td>Sex</td>
+                <tr ng-repeat="r in resourceList">
+                    <td></td>
+                    <td>{{r.name+" "+r.surname}}</td>
+                    <td>{{r.email}}</td>
+                    <td></td>
                 </tr>
             </tbody>
-        </table>   
+        </table>  
+        </div>    
     </div>
 </div>
 </div>

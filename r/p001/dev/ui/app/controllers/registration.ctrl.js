@@ -189,7 +189,7 @@ var registrationCtrl = function ($scope, $http) {
 	};
 	
 	$scope.finalDataPost = function(){
-		
+		console.log($scope.registrationData.data);
 		$http.post('http://localhost:6500/rest/registration',$scope.registrationData.data).success(function(data, status){
 			console.log(data);
 			if(data.registrationStatus==="true"){
