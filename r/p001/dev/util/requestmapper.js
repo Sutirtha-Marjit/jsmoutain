@@ -50,6 +50,18 @@ module.exports = function(shareableSettings,config){
         'POST'
     );
     
+    BaseController(
+        app,
+        route.unregister,
+        ctrl.unregisterController,
+        {
+            mongoose : shareableSettings.mongoose,
+            dbconn:shareableSettings.dbconn,
+            schemaBundle:shareableSettings.schemaBundle
+        },
+        'POST'
+    );
+    
     
     BaseController(
         app,

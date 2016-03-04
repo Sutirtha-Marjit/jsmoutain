@@ -19,9 +19,9 @@
     
     <div class="row" ng-show="alphabeticSection">
         <div class="container-fluid">
-            <div class="btn-group " >
-                <a class="btn btn-sm btn-success active">All</a>
-                <a id="btnCharacter{{n}}" ng-repeat="n in alphabets" ng-click="pressLetter($event)" title="{{'Resources, whos name starts with '+n}}" class="btn btn-sm btn-default">{{n}}</a>    
+            <div class="btn-group chacarterPanel" >
+                <a id="btnCharacterAll" class="btn btn-sm btn-default btn-success active" ng-click="pressLetter('All')">All</a>
+                <a id="btnCharacter{{n}}" ng-repeat="n in alphabets" ng-click="pressLetter(n)" title="{{'Resources, whos name starts with '+n}}" class="btn btn-sm btn-default">{{n}}</a>    
             </div>        
         </div>    
     </div>
@@ -30,13 +30,13 @@
     
     <div class="row">
         <div class="container-fluid">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover ">
             <thead>
-                <tr class="text-primary">
-                    <td></td>
-                    <td><span class="glyphicon glyphicon-user"></span> Name</td>
-                    <td><span class="glyphicon glyphicon-envelope"></span> Email</td>
-                    <td><span class="glyphicon glyphicon-earphone"></span> Contact</td>
+                <tr class="text-success success">
+                    <th></th>
+                    <th><span class="glyphicon glyphicon-user"></span> Name</th>
+                    <th><span class="glyphicon glyphicon-envelope"></span> Email</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +44,12 @@
                     <td></td>
                     <td>{{r.name+" "+r.surname}}</td>
                     <td>{{r.email}}</td>
-                    <td></td>
+                    <td>
+                    <a class="btn" ng-click="unregister(r._id)" title="Unregister {{r.name+' '+r.surname}}"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a class="btn" title="Hide {{r.name+' '+r.surname}}"><span class="glyphicon glyphicon-eye-close"></span></a>
+                    <a class="btn" title="Send message to {{r.name+' '+r.surname}}"><span class="glyphicon glyphicon-comment"></span></a>    
+                        
+                    </td>
                 </tr>
             </tbody>
         </table>  

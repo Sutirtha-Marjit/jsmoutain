@@ -13,6 +13,7 @@
 		"projects": "/rest/projects",
 		"registration" : "/rest/registration",
 		"resources": "/rest/resources",
+        "unregister": "/rest/unregister",
 		"skills": "/rest/skills",
         "dbtest": "/rest/dbtest"
 	},

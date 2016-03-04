@@ -22,6 +22,7 @@
     ctrl.helpController = require(ctrlroot + 'help.ctrlr.js');
 	ctrl.infoController = require(ctrlroot + 'info.ctrlr.js');
     ctrl.dbtestController = require(ctrlroot+ 'dbtest.ctrlr.js');
+    ctrl.unregisterController = require(ctrlroot+ 'unregister.ctrlr.js');
     //controller :@end
 
 	var app = express();
