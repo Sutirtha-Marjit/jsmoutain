@@ -1,0 +1,29 @@
+{
+  "name": "3dinitiative",
+  "version": "1.0.0",
+  "description": "3dinitiative",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
+  },
+  "keywords": [
+    "3d",
+    "threeJS",
+    "WEBGL"
+  ],
+  "author": "sutirtha.social.marjit@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "@types/three": "^0.160.0",
+    "three": "^0.160.0"
+  }
+}
