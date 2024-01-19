@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development', 
@@ -11,9 +13,22 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
   },
   module: {
     rules: [
+      {
+        test: /\.(png|jpg|gif|svg|mp4|webm)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 1158192, 
+              name: '[name].[ext]',
+              outputPath: 'assets/',
+            },
+          }]
+      },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
@@ -29,6 +44,18 @@ module.exports = {
     port: 8080,
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'node_modules/three/build/three.module.js',
+          to: 'assets/',
+        },
+        {
+          from: 'node_modules/three/examples/jsm/loaders/',
+          to: 'assets/',
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html',
       filename: 'index.html',

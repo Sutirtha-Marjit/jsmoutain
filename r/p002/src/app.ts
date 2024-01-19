@@ -1,1 +1,4 @@
-alert('Working...');
+
+import { SceneGround } from "@scenes";
+
+SceneGround.start();

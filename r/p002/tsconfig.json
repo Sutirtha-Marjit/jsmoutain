@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "baseUrl": "./src",
       "target": "es5",
       "module": "esnext",
       "moduleResolution": "node",
@@ -10,11 +11,17 @@
       "strict": true,
       "jsx": "react",
       "sourceMap": true,
-      "outDir": "./deploy"
+      "outDir": "./deploy",
+      "paths": {
+        "@scenes" :["scenes"],
+        "@utils" :["utils"],
+        "@datatype": ["datatypes"]
+      }
     },
     "include": [
       "src/**/*.ts",
-      "src/**/*.d.ts"
+      "src/**/*.d.ts",
+      "TSAdditionaldef.d.ts"
     ],
     "exclude": [
       "node_modules"
