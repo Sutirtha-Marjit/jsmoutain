@@ -47,6 +47,10 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
+          from:'src/assets/',
+          to:'assets/'
+        },
+        {
           from: 'node_modules/three/build/three.module.js',
           to: 'assets/',
         },

@@ -1,5 +1,7 @@
-import Three, { OrbitControls } from "@datatype";
+import Three, { OrbitControls, FBXLoader } from "@datatype";
+
 import * as grass from "../assets/grass.jpg";
+import * as wall from "../assets/wall.jpg";
 
 const { Scene,
     WebGLRenderer,
@@ -14,6 +16,8 @@ const { Scene,
     TwoPassDoubleSide,
     RepeatWrapping,
     TextureLoader,
+    Group,
+    LoadingManager,
     Mesh
 } = Three;
 
@@ -21,13 +25,26 @@ export const defaultProps = {
     masterWrapDOMId: 'earthWrap3DInitiative',
     earthWidth: window.screen.width,
     earthHeight: window.screen.height,
-    helperRequired: true
+    occupiedWidth: 300,
+    occupiedHeight: 300,
+    helperRequired: true,
+    gridRequired: false,
+    axisRequired: true,
 };
 
-export const loadImage = (path: 'grass' | 'sand') => {
+export const loadImage = (path: 'grass' | 'sand' | 'wall') => {
     return new Promise((resolve, reject) => {
         const img = new Image();
-        img.src = grass.default;
+        switch(path){
+            case 'grass':
+                img.src = grass.default;
+                break;
+
+               case 'wall':
+                img.src = wall.default;
+                break; 
+        }
+        
         img.onload = () => {
             resolve(img);
         }
@@ -63,7 +80,7 @@ export const getOrbitControl = (camera: Three.Camera, element: HTMLElement) => n
 export const getCameraHelper = (camera: Three.Camera) => new CameraHelper(camera);
 
 export const getGridHelper = () => {
-    const gh = new GridHelper(40, 40);
+    const gh = new GridHelper(defaultProps.occupiedWidth, defaultProps.occupiedHeight);
     return gh;
 }
 
@@ -75,26 +92,67 @@ export const getBox = (width: number, height: number, depth: number) => {
 }
 
 
-
-export const getPlane = (width: number = 10, height: number = 10, doubleSided: boolean = true) => {
+export const getPlane = (width: number = defaultProps.occupiedWidth, height: number = defaultProps.occupiedHeight, doubleSided: boolean = true) => {
     const planeGeo = new PlaneGeometry(width, height);
     const planeMaterial = new MeshBasicMaterial({ color: 0xFFFFFF, side: doubleSided ? DoubleSide : TwoPassDoubleSide });
     const plane = new Mesh(planeGeo, planeMaterial);
-
     return plane;
 };
 
-export const getBase = (width: number = 10, height: number = 10) => {
+export const getBase = (width: number = defaultProps.occupiedWidth, height: number = defaultProps.occupiedHeight) => {
     //loadImage("grass");
     const textureLoader = new TextureLoader();
     const texture = textureLoader.load('../assets/grass.jpg');
-
-    texture.wrapS = RepeatWrapping;
-    texture.wrapT = RepeatWrapping;
-    texture.repeat.set(12, 12); // Adjust the repeat values as needed
+    // texture.wrapS = RepeatWrapping;
+    // texture.wrapT = RepeatWrapping;
+    // texture.repeat.set(12, 12); // Adjust the repeat values as needed
     const planeGeo = new PlaneGeometry(width, height);
     const planeMaterial = new MeshBasicMaterial({ color: 0xFFFFFF, map: texture });
     const plane = new Mesh(planeGeo, planeMaterial);
 
     return plane;
 }
+
+export const getPlaneWithWall = (width: number = defaultProps.occupiedWidth, height: number = defaultProps.occupiedHeight, doubleSided: boolean = true) => {
+    const environmentGroup = new Group();
+    const textureLoader = new TextureLoader();
+    const texture = textureLoader.load('../assets/wall.jpg');
+    texture.wrapS = RepeatWrapping;
+    texture.wrapT = RepeatWrapping;
+    texture.repeat.set(150, 4); // Adjust the repeat values as needed
+    const planeGeo = new PlaneGeometry(width, height);
+    const planeMaterial = new MeshBasicMaterial({ color: 0xFFFFFF, side: doubleSided ? DoubleSide : TwoPassDoubleSide });
+    const plane = new Mesh(planeGeo, planeMaterial);
+
+    for (let i = 0; i < 4; i++) {
+        const boxGeo = new BoxGeometry(width, 2.7, 5);
+        const material0 = new MeshBasicMaterial({ map:texture });
+        const material = new MeshBasicMaterial({ color: 0x0000FC });
+        const box = new Mesh(boxGeo, material0);
+
+        box.position.z = 2.5;
+        (i===0) && (box.position.y = (-1) * (height / 2));
+        (i===1) && (box.position.y = (height / 2));
+        (i===2) && (box.position.x = (-1) * (height / 2)) && (box.rotation.z = 0.5*Math.PI);
+        (i===3) && (box.position.x = (height / 2)) && (box.rotation.z = 0.5*Math.PI);
+        environmentGroup.add(box);
+    }
+
+
+    environmentGroup.add(plane);
+
+    return environmentGroup;
+};
+
+export const getWatchTower = ()=>{
+    return new Promise((resolve,reject)=>{
+        const fbxLoader = new FBXLoader();
+        fbxLoader.load('../assets/models/watchtower/fbx/wooden_watch_tower2.fbx',(fbx)=>{
+            resolve(fbx);
+        },(e)=>{
+            reject(e);
+        });
+        
+    });
+}
+
