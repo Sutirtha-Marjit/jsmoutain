@@ -4,6 +4,7 @@
   "description": "3dinitiative",
   "main": "index.js",
   "scripts": {
+    "start":"npm run build && npm run start-dev",
     "start-dev": "webpack serve --config webpack.config.js",
     "build": "webpack --config webpack.config.js"
   },

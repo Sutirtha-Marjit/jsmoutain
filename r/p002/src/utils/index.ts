@@ -1,7 +1,8 @@
-import Three, { OrbitControls, FBXLoader } from "@datatype";
+import Three, { OrbitControls, FBXLoader, OBJLoader } from "@datatype";
 
 import * as grass from "../assets/grass.jpg";
 import * as wall from "../assets/wall.jpg";
+import * as woodenWatchTowerWrap from "../assets/models/watchtower/fbx/Wood_Tower_Col.jpg";
 
 const { Scene,
     WebGLRenderer,
@@ -145,11 +146,43 @@ export const getPlaneWithWall = (width: number = defaultProps.occupiedWidth, hei
 };
 
 export const getWatchTower = ()=>{
-    return new Promise((resolve,reject)=>{
+    return new Promise<Three.Group<Three.Object3DEventMap>>((resolve,reject)=>{
         const fbxLoader = new FBXLoader();
-        fbxLoader.load('../assets/models/watchtower/fbx/wooden_watch_tower2.fbx',(fbx)=>{
+        fbxLoader.load('../assets/models/watchtower/fbx/wooden_watch_tower2.fbx',
+        (fbx)=>{
+            const textureLoader = new TextureLoader();
+            textureLoader.loadAsync('../assets/models/watchtower/fbx/Wood_Tower_Col.jpg').then((woodenWrap)=>{
+                fbx.traverse((child)=>{
+                    const material0 = new MeshBasicMaterial({ color: 0x0959FF ,map:woodenWrap });
+                    child.customDepthMaterial = material0;
+                })
+            })
+            fbx.scale.set(0.005,0.005,0.005);
             resolve(fbx);
-        },(e)=>{
+        },
+        (event)=>{
+            console.clear();
+            console.log(`${(event.loaded/event.total)*100}%`);
+        },
+        (e)=>{
+            reject(e);
+        
+    });
+
+    });
+}
+
+export const getBuildings = ()=>{
+    return new Promise<Three.Group<Three.Object3DEventMap>>((resolve,reject)=>{
+        const objLoader = new OBJLoader();
+        objLoader.load('../assets/models/buildings/Residential Buildings 001.obj',(obj)=>{
+            console.log('Load successful!');
+            resolve(obj);
+        },(event)=>{
+            console.clear();
+            console.log(`${(event.loaded/event.total)*100}%`);
+        },
+        (e)=>{
             reject(e);
         });
         
